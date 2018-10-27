@@ -25,10 +25,8 @@
        <div class="self-modal">
          <form >
          <div class="text-center">
-           <!-- <textarea class="text-center" name="name" id="new_text">Your text here</textarea> -->
-           <textarea rows = "5" cols = "50" name = "description" id="new_text">
-            Enter your name
-         </textarea>
+           <textarea class="text-center" name="name" id="new_text">Your text here</textarea>
+
          </div>
          <div class="row">
           <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
