@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <title>Canvas Image Editor</title> -->
         <title>Greetstore</title>
-        <meta name="keywords" content="<?php //echo $return['keywords']; ?>">
-        <meta name="description" content="<?php //echo $return['description']; ?>">
+        <!-- <meta name="keywords" content="<?php //echo $return['keywords']; ?>">
+        <meta name="description" content="<?php //echo $return['description']; ?>"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
         <!--  STYLE SHEETS -->
@@ -17,6 +17,32 @@
         <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Indie+Flower|Open+Sans+Condensed:300|Pacifico|Patrick+Hand|Poor+Story|Rajdhani|Roboto+Mono|Spicy+Rice|Alegreya|Alfa+Slab+One" rel="stylesheet">
+
 
     </head>
     <body>
+
+
+
+      <!--
+
+Amey Sarode
+ <div clas="modal" id="textSettingModal">
+  <div class="modal-header">
+ </div>
+ <div class="modal-body">
+  <div class="content-body">
+   <div class="color-content">
+  </div> <div class="font-content">
+ </div> <div class="bend-content">
+ </div> <div class="align-content">
+ </div>
+</div>
+ <div class="options-body">
+  1 2 3 4
+</div>
+</div>
+bottom fix modal
+
+     -->

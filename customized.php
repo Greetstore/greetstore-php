@@ -25,7 +25,7 @@
 
 
       <div class="carousel-inner">
-        <div class="item active">
+        <div class="item active carousel-image">
               <div id="editorContainer">
                   <canvas id="editor" height="480" width="480"></canvas>
               </div>
@@ -47,8 +47,8 @@
 
 
 <!-- Start Column Tabs -->
-<div class="container text-center">
-<div class="row tabs" style="border:1px solid aqua;">
+<div class="container-fluid text-center" id="firstlook">
+<div class="row tabs">
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" data-toggle="modal" data-target="#textModal">
     <i class="fa fa-text-width fa-2x" aria-hidden="true"></i>
     <label for="">Add Text</label>
@@ -61,14 +61,13 @@
    <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
     <label for="">&nbsp;Images</label>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" style="background-color:#0483c2;">
-    <i class="fa fa-shopping-cart fa-2x" style="color:white;" aria-hidden="true"></i>
-    <label for="" style="color:white;">Buy Now</label>
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs buynow">
+    <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+    <label for="">Buy Now</label>
   </div>
 </div>
 </div>
 <!-- End Column Tabs -->
-
 
 </div>
 
