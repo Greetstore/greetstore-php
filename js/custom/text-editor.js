@@ -4,6 +4,123 @@ var G_EDITOR = (function ($, g_editor) {
 		$(document).ready( function() {
 
 
+			if (Modernizr.mq('(min-width: 340px)')) {
+				$('#navbarCss').css('margin-bottom','15%');
+			}
+
+
+			$(document).on("click","#imagesModalFirstlook",function(){
+				$('#firstlook').hide();
+			});
+
+      $(document).on("click","#imagesrealdiv",function(){
+				$('#firstlook').show();
+				$('#imagesModal').modal("hide");
+			});
+
+			$(document).on("click","#fontContainer",function(){
+
+
+					 if (Modernizr.mq('(max-width: 500px)')) {
+						 $('#containerSame').toggle();
+						$('#fontTextModal').toggle();
+						if($("#containerSame").is(":visible")){
+								$('.allTextModals').css('margin-top','125%');
+						} else{
+								$('.allTextModals').css('margin-top','110%');
+						}
+						} else {
+							 $('#containerSame').toggle();
+							$('#fontTextModal').toggle();
+							if($("#containerSame").is(":visible")){
+									$('.allTextModals').css('margin-top','50%');
+							} else{
+									$('.allTextModals').css('margin-top','40%');
+							}
+						}
+
+
+			});
+
+			$(document).on("click",".yo",function(){
+				if (Modernizr.mq('(max-width: 500px)')) {
+				$('.allTextModals').css('margin-top','125%');
+			}else{
+				$('.allTextModals').css('margin-top','50%');
+			}
+				$('#containerSame').show();
+				$('#fontTextModal').hide();
+			});
+
+
+    // $('#inputfile').change(function(){
+    //     var file_data = $('#inputfile').prop('files')[0];
+    //     var form_data = new FormData();
+    //     form_data.append('file', file_data);
+    //     $.ajax({
+    //         url: "upload.php",
+    //         type: "POST",
+    //         data: form_data,
+    //         contentType: false,
+    //         cache: false,
+    //         processData:false,
+    //         success: function(data){
+    //             console.log("successful upload");
+    //         }
+    //     });
+    // });
+
+		function readURL(input) {
+			 if (input.files && input.files[0]) {
+					 var reader = new FileReader();
+					 var name=input.files[0]['name'];
+					 var ext = name.split('.').pop().toLowerCase();
+
+					  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+					  {
+					   $('#showError').append("<label class='alert alert-danger'>Invalid image type</label>");
+					  }
+						else{
+					 reader.onload = function (e) {
+						 $('#showError label').remove();
+							 $('#image_preview')
+							 .append("<div class='col-sm-4 col-xs-4'><img height='100' width='100' src='"+e.target.result+"'></div>");
+					 }
+
+					 reader.readAsDataURL(input.files[0]);
+					 }
+				 }
+	 }
+
+	 $("#inputFile").change(function () {
+			 readURL(this);
+			 var file_data = $('#inputFile').prop('files')[0];
+			    var form_data = new FormData();
+			    form_data.append('file', file_data);
+			    $.ajax({
+			        url: "upload.php",
+			        type: "POST",
+			        data: form_data,
+			        contentType: false,
+			        cache: false,
+			        processData:false,
+							beforeSend:function(){
+			     $('#showUploading').append("<label class='alert alert-success'>Image is Uploading...</label>");
+			    },
+			        success: function(data){
+									$('#showUploading label').remove();
+			        }
+			    });
+
+
+	 });
+
+
+			$("#downloadImage").click(function(){
+				$("#editor").get(0).toBlob(function(blob){
+					saveAs(blob, "customizedImage.png");
+				});
+				});
 
 				$(".column-tabs").click(function () {
 				    $(".column-tabs").removeClass("activemanual");
@@ -18,8 +135,20 @@ var G_EDITOR = (function ($, g_editor) {
 				$(document).on('click','.realdiv',function() {
 					$("#textSettingModal").modal("hide");
 					$("#firstlook").show();
-				// g_editor.canvas.discardActiveObject().renderAll();
+
 				});
+
+				$(document).on('click','.realdivShapes',function() {
+					$("#shapesSettingModal").modal("hide");
+					$("#firstlook").show();
+
+				});
+
+      $(document).on('click','#addTextSetting',function(){
+				$("#textSettingModal").modal("hide");
+				$('#firstlook').show();
+				$("#textModal").modal("show");
+			});
 
 			$(document).on('click','.add_text',function() {
 				//alert("Hi");
@@ -28,8 +157,7 @@ var G_EDITOR = (function ($, g_editor) {
 				var new_text = $('#new_text').val();
 				if((selected_object != null) && (selected_object.type == "text" || selected_object.type == "curved-text")){
 					selected_object.set("text",new_text);
-					console.log("hello");
-						g_editor.canvas.calcOffset().renderAll();
+						g_editor.canvas.renderAll();
 				}
 				else{
 				add_text(new_text,false,false);
@@ -38,14 +166,14 @@ var G_EDITOR = (function ($, g_editor) {
         $("#firstlook").hide();
 				$("#textSettingModal").modal("show");
 			});
+
 			function add_text(txt, left, right) {
 				var text = create_text_elmt(txt);
 
 
 				g_editor.canvas.add(text);
-				g_editor.canvas.sendToBack(text);
 				g_editor.canvas.setActiveObject(text);
-				g_editor.canvas.calcOffset().renderAll();
+				g_editor.canvas.renderAll();
 
        text.on("selected",function(){
 				 $("#textModal").modal("show");
@@ -101,7 +229,7 @@ var G_EDITOR = (function ($, g_editor) {
 					selected_object.set("spacing",20+10*(sliderValue-55));
 					selected_object.set("flipped",true);
 					selected_object.set("originX",selected_object.get("originX"));
-					console.log(sliderValue);
+
 				}else if(sliderValue<=45){
 					// selected_object.set("fontSize",selected_object.get("fontSize")+(45-sliderValue));
 					selected_object.set("radius",50+10*(45-sliderValue));
@@ -124,15 +252,15 @@ var G_EDITOR = (function ($, g_editor) {
 							originX:selected_object.get("originX")
 					});
 
-					text.on("selected",function(){
-						$("#textModal").modal("show");
-					});
-
-
 					g_editor.canvas.remove(selected_object);
 					g_editor.canvas.setActiveObject(text);
 					g_editor.canvas.add(text);
-						console.log(sliderValue);
+
+										text.on("selected",function(){
+											$("#textModal").modal("show");
+										});
+
+
 				}
 				g_editor.canvas.renderAll();
 			}
@@ -142,12 +270,558 @@ var G_EDITOR = (function ($, g_editor) {
 
 
 
+		$(document).on("click", "#rectangle", function () {
+
+
+				var rect = new fabric.Rect({
+		  	top: 150,
+		    left: 180,
+		    width: 75,
+		    height: 50,
+		    fill: 'blue',
+
+
+				originX:'center'
+		});
+
+
+					 rect.on("selected",function(){
+
+						 $("#firstlook").hide();
+						 $("#shapesSettingModal").modal("show");
+					 });
+
+
+				g_editor.canvas.add(rect);
+				g_editor.canvas.setActiveObject(rect);
+				g_editor.canvas.renderAll();
+
+
+				$("#shapesModal").modal("hide");
+				$('#firstlook').hide();
+				$("#shapesSettingModal").modal("show");
+
+
+
+		});
+
+		$(document).on("click", "#square", function () {
+
+
+				var square = new fabric.Rect({
+		  	top: 150,
+		    left: 180,
+		    width: 50,
+		    height: 50,
+		    fill: 'blue',
+
+
+				originX:'center'
+		});
+
+		square.on("selected",function(){
+
+			$("#firstlook").hide();
+			$("#shapesSettingModal").modal("show");
+		});
+
+
+ g_editor.canvas.add(square);
+ g_editor.canvas.setActiveObject(square);
+ g_editor.canvas.renderAll();
+
+
+ $("#shapesModal").modal("hide");
+ $('#firstlook').hide();
+ $("#shapesSettingModal").modal("show");
+
+		});
+
+		$(document).on("click", "#rounded_square", function () {
+
+
+				var rsquare = new fabric.Rect({
+		  	top: 150,
+		    left: 180,
+		    width: 50,
+		    height: 50,
+				cornersize:100,
+		    fill: 'blue',
+        rx:10,
+				ry:10,
+				originX:'center'
+		});
+
+		rsquare.on("selected",function(){
+
+			$("#firstlook").hide();
+			$("#shapesSettingModal").modal("show");
+		});
+
+
+ g_editor.canvas.add(rsquare);
+ g_editor.canvas.setActiveObject(rsquare);
+ g_editor.canvas.renderAll();
+
+
+ $("#shapesModal").modal("hide");
+ $('#firstlook').hide();
+ $("#shapesSettingModal").modal("show");
+
+		});
+
+		$(document).on("click", "#ellipse", function () {
+
+			var eli = new fabric.Ellipse({
+			  	top: 150,
+			    left: 110,
+			    rx: 50,
+			    ry: 25,
+			    fill: 'blue',
+
+			    strokeWidth: 4,
+			});
+
+			eli.on("selected",function(){
+
+				$("#firstlook").hide();
+				$("#shapesSettingModal").modal("show");
+			});
+
+
+	 g_editor.canvas.add(eli);
+	 g_editor.canvas.setActiveObject(eli);
+	 g_editor.canvas.renderAll();
+
+
+	 $("#shapesModal").modal("hide");
+	 $('#firstlook').hide();
+	 $("#shapesSettingModal").modal("show");
+
+		});
+
+		$(document).on("click","#circle",function(){
+
+			var cir = new fabric.Circle({
+		  	top: 100,
+		    left: 180,
+				radius: 25,
+		    fill: 'blue',
+
+
+				originX:'center'
+		});
+		cir.on("selected",function(){
+
+			$("#firstlook").hide();
+			$("#shapesSettingModal").modal("show");
+		});
+
+
+ g_editor.canvas.add(cir);
+ g_editor.canvas.setActiveObject(cir);
+ g_editor.canvas.renderAll();
+
+
+ $("#shapesModal").modal("hide");
+ $('#firstlook').hide();
+ $("#shapesSettingModal").modal("show");
+		});
+
+		$(document).on("click","#triangle",function(){
+
+			var tri = new fabric.Triangle({
+		  	top: 100,
+		    left: 180,
+		    width: 50,
+		    height: 50,
+		    fill: 'blue',
+
+
+				originX:'center'
+		});
+		tri.on("selected",function(){
+
+ 		 $("#firstlook").hide();
+ 		 $("#shapesSettingModal").modal("show");
+ 	 });
+
+
+ g_editor.canvas.add(tri);
+ g_editor.canvas.setActiveObject(tri);
+ g_editor.canvas.renderAll();
+
+
+ $("#shapesModal").modal("hide");
+ $('#firstlook').hide();
+ $("#shapesSettingModal").modal("show");
+
+		});
+
+		$(document).on("click", "#heart", function (e) {
+
+				var heart = new fabric.Path('M 272.70141,238.71731 \
+						C 206.46141,238.71731 152.70146,292.4773 152.70146,358.71731  \
+						C 152.70146,493.47282 288.63461,528.80461 381.26391,662.02535 \
+						C 468.83815,529.62199 609.82641,489.17075 609.82641,358.71731 \
+						C 609.82641,292.47731 556.06651,238.7173 489.82641,238.71731  \
+						C 441.77851,238.71731 400.42481,267.08774 381.26391,307.90481 \
+						C 362.10311,267.08773 320.74941,238.7173 272.70141,238.71731  \
+						z ');
+				var scale = 100 / heart.width;
+				heart.set({
+						left: 140,
+						top: 140,
+						scaleX: scale,
+						scaleY: scale,
+						fill: 'blue',
+						opacity: 1,
+						selectable: true
+				});
+
+
+				heart.on("selected",function(){
+
+ 				 $("#firstlook").hide();
+ 				 $("#shapesSettingModal").modal("show");
+ 			 });
+
+
+ 		g_editor.canvas.add(heart);
+ 		g_editor.canvas.setActiveObject(heart);
+ 		g_editor.canvas.renderAll();
+
+
+ 		$("#shapesModal").modal("hide");
+ 		$('#firstlook').hide();
+ 		$("#shapesSettingModal").modal("show");
+		});
+
+
+var trapezoid = [ {x:-100,y:-50},{x:100,y:-50},{x:150,y:50},{x:-150,y:50} ];
+var emerald = [   {x: 35, y: 90},
+	{x: 63, y: 90},
+	{x: 86, y: 74},
+	{x: 95, y: 47},
+	{x: 86, y: 19},
+	{x: 63, y: 0},
+	{x: 35, y: 0},
+	{x: 11, y: 19},
+	{x: 0, y: 45},
+	{x: 11, y: 72},
+                  ];
+var star4 = [
+	{x: 26, y: 90},
+	{x: 65, y: 90},
+	{x: 88, y: 57},
+	{x: 81, y: 18},
+	{x: 45, y: 0},
+	{x: 12, y: 18},
+	{x: 0, y: 58}
+];
+var star5 = [
+	{x: 46, y: 90},
+	{x: 58, y: 56},
+	{x: 93, y: 55},
+	{x: 65, y: 35},
+	{x: 77, y: 0},
+	{x: 48, y: 22},
+	{x: 19, y: 0},
+	{x: 30, y: 35},
+	{x: 0, y: 56},
+	{x: 37, y: 56}];
+	var polygon3 = [
+		{x: 0, y: 50},
+		{x: 45, y: 80},
+		{x: 85, y: 50},
+		{x: 70, y: 0},
+		{x: 17, y: 0}];
+		var polygon4 = [
+			{x: 45, y: 90},
+			{x: 90, y: 70},
+			{x: 90, y: 20},
+			{x: 45, y: 0},
+			{x: 0, y: 20},
+			{x: 0, y: 70}];
+			var star8=[
+					{x: 46, y: 90},
+					{x: 52, y: 63},
+					{x: 77, y: 78},
+					{x: 61, y: 53},
+					{x: 89, y: 46},
+					{x: 61, y: 40},
+					{x: 77, y: 14},
+					{x: 52, y: 30},
+					{x: 46, y: 0},
+					{x: 37, y: 30},
+					{x: 14, y: 14},
+					{x: 27, y: 39},
+					{x: 0, y: 46},
+					{x: 27, y: 53},
+					{x: 13, y: 77},
+					{x: 37, y: 62}
+			];
+			var star10=[
+									{x: 35, y: 90},
+									{x: 50, y: 81},
+									{x: 63, y: 90},
+									{x: 69, y: 73},
+									{x: 88, y: 73},
+									{x: 82, y: 56},
+									{x: 96, y: 46},
+									{x: 82, y: 36},
+									{x: 87, y: 18},
+									{x: 70, y: 18},
+									{x: 63, y: 0},
+									{x: 49, y: 12},
+									{x: 35, y: 0},
+									{x: 28, y: 18},
+									{x: 11, y: 18},
+									{x: 17, y: 35},
+									{x: 0, y: 46},
+									{x: 17, y: 56},
+									{x: 11, y: 73},
+									{x: 28, y: 73}
+							];
+var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star10);
+
+
+	$(document).on("click","#polygon",function(){
+			var polyg = new fabric.Polygon(shape[1], {
+		    top: 100,
+		    left: 100,
+		    fill: 'blue',
+
+		    strokeWidth: 2
+		});
+		polyg.on("selected",function(){
+
+ 		 $("#firstlook").hide();
+ 		 $("#shapesSettingModal").modal("show");
+ 	 });
+
+
+ g_editor.canvas.add(polyg);
+ g_editor.canvas.setActiveObject(polyg);
+ g_editor.canvas.renderAll();
+
+
+ $("#shapesModal").modal("hide");
+ $('#firstlook').hide();
+ $("#shapesSettingModal").modal("show");
+		});
+
+		$(document).on("click","#polygon3",function(){
+				var polyg3 = new fabric.Polygon(shape[4], {
+					top: 200,
+					left: 225,
+					fill: 'blue',
+
+					angle:180,
+					strokeWidth: 2
+			});
+			polyg3.on("selected",function(){
+
+			 $("#firstlook").hide();
+			 $("#shapesSettingModal").modal("show");
+		 });
+
+
+	 g_editor.canvas.add(polyg3);
+	 g_editor.canvas.setActiveObject(polyg3);
+	 g_editor.canvas.renderAll();
+
+
+	 $("#shapesModal").modal("hide");
+	 $('#firstlook').hide();
+	 $("#shapesSettingModal").modal("show");
+			});
+
+		$(document).on("click","#polygon1",function(){
+				var polyg1 = new fabric.Polygon(shape[2], {
+					top: 220,
+					left: 240,
+					angle:180,
+					fill: 'blue',
+
+					strokeWidth: 2
+			});
+			polyg1.on("selected",function(){
+
+				$("#firstlook").hide();
+				$("#shapesSettingModal").modal("show");
+			});
+
+
+
+	 g_editor.canvas.add(polyg1);
+	 g_editor.canvas.setActiveObject(polyg1);
+	 g_editor.canvas.renderAll();
+
+
+	 $("#shapesModal").modal("hide");
+	 $('#firstlook').hide();
+	 $("#shapesSettingModal").modal("show");
+
+			});
+
+			$(document).on("click","#polygon4",function(){
+					var polyg4 = new fabric.Polygon(shape[5], {
+						top: 220,
+						left: 240,
+						angle:180,
+						fill: 'blue',
+
+						strokeWidth: 2
+				});
+				polyg4.on("selected",function(){
+
+					$("#firstlook").hide();
+					$("#shapesSettingModal").modal("show");
+				});
+
+
+
+		 g_editor.canvas.add(polyg4);
+		 g_editor.canvas.setActiveObject(polyg4);
+		 g_editor.canvas.renderAll();
+
+
+		 $("#shapesModal").modal("hide");
+		 $('#firstlook').hide();
+		 $("#shapesSettingModal").modal("show");
+
+				});
+
+			$(document).on("click","#star",function(){
+					var star = new fabric.Polygon(shape[3], {
+						top: 220,
+						left: 240,
+						angle:180,
+						fill: 'blue',
+
+						strokeWidth: 2
+				});
+				star.on("selected",function(){
+
+					$("#firstlook").hide();
+					$("#shapesSettingModal").modal("show");
+				});
+
+
+
+		 g_editor.canvas.add(star);
+		 g_editor.canvas.setActiveObject(star);
+		 g_editor.canvas.renderAll();
+
+
+		 $("#shapesModal").modal("hide");
+		 $('#firstlook').hide();
+		 $("#shapesSettingModal").modal("show");
+
+				});
+
+				$(document).on("click","#star1",function(){
+						var star1= new fabric.Polygon(shape[6], {
+							top: 220,
+							left: 240,
+							angle:180,
+							fill: 'blue',
+
+							strokeWidth: 2
+					});
+					star1.on("selected",function(){
+
+						$("#firstlook").hide();
+						$("#shapesSettingModal").modal("show");
+					});
+
+
+
+			 g_editor.canvas.add(star1);
+			 g_editor.canvas.setActiveObject(star1);
+			 g_editor.canvas.renderAll();
+
+
+			 $("#shapesModal").modal("hide");
+			 $('#firstlook').hide();
+			 $("#shapesSettingModal").modal("show");
+
+					});
+
+
+					$(document).on("click","#star2",function(){
+							var star2 = new fabric.Polygon(shape[7], {
+								top: 220,
+								left: 240,
+								angle:180,
+								fill: 'blue',
+
+								strokeWidth: 2
+						});
+						star2.on("selected",function(){
+
+							$("#firstlook").hide();
+							$("#shapesSettingModal").modal("show");
+						});
+
+
+
+				 g_editor.canvas.add(star2);
+				 g_editor.canvas.setActiveObject(star2);
+				 g_editor.canvas.renderAll();
+
+
+				 $("#shapesModal").modal("hide");
+				 $('#firstlook').hide();
+				 $("#shapesSettingModal").modal("show");
+
+						});
+
+			$(document).on("click","#cloneShape",function(){
+				var object = fabric.util.object.clone(g_editor.canvas.getActiveObject());
+		    object.set("top", object.top+5);
+		    object.set("left", object.left+5);
+		    g_editor.canvas.add(object);
+				g_editor.canvas.renderAll();
+
+			});
+
+			$(document).on("click","#deleteShapesObject",function(){
+				g_editor.canvas.remove(g_editor.canvas.getActiveObject());
+				g_editor.canvas.renderAll();
+			});
+
+    $(document).on("click","#sendBackward",function(){
+			g_editor.canvas.sendToBack(g_editor.canvas.getActiveObject());
+		});
+
+		$(document).on("click","#sendForward",function(){
+			g_editor.canvas.bringToFront(g_editor.canvas.getActiveObject());
+		});
+
+   $(document).on("click","#redShape",function(){
+		 g_editor.canvas.getActiveObject().set("fill","red");
+					 g_editor.canvas.renderAll();
+	 });
+
     $(document).on("change","input[name=color]",function(){
 
 				 var selected_object = g_editor.canvas.getActiveObject();
 				 if ((selected_object != null) && (selected_object.type == "text" || selected_object.type == "curved-text"))
 				 {
 			 var value = $('input[name=color]:checked').val();
+			 selected_object.set({fill:value});
+				g_editor.canvas.renderAll();
+			 }
+
+		});
+
+		$(document).on("change","input[name=shapesColor]",function(){
+				 var selected_object = g_editor.canvas.getActiveObject();
+				 if ((selected_object != null))
+				 {
+			 var value = $('input[name=shapesColor]:checked').val();
 			 selected_object.set({fill:value});
 				g_editor.canvas.renderAll();
 			 }
@@ -193,6 +867,145 @@ var G_EDITOR = (function ($, g_editor) {
 		 g_editor.canvas.renderAll();
 		}
 		});
+
+   // Start imgLoader
+		// $(document).on("change","#imgLoader",function(e){
+		// 	var reader = new FileReader();
+		// 	reader.onload = function (event) {
+		// 			var imgObj = new Image();
+		// 			imgObj.src = event.target.result;
+		// 			imgObj.onload = function () {
+		// 					// start fabricJS stuff
+		//
+		// 					var image = new fabric.Image(imgObj);
+		// 					image.set({
+		// 							left: 134,
+		// 							top: 120,
+		// 							angle: 0,
+		// 							padding: 10,
+		// 							cornersize: 10
+		// 					});
+		// 					// image.filters.push(new fabric.Image.filters.Invert());
+		// 					// image.applyFilters();
+		//
+		// 					image.scaleToWidth(150);
+    //           image.scaleToHeight(150);
+		//
+		// 					g_editor.canvas.add(image);
+		// 					g_editor.canvas.setActiveObject(image);
+		// 					$("#imagesModal").modal("hide");
+		//
+		// 					// end fabricJS stuff
+		//
+		// 					image.on("selected",function(){
+		// 						$("#imagesModal").modal("show");
+		// 					});
+		// 			}
+		//
+		// 	}
+		// 	reader.readAsDataURL(e.target.files[0]);
+		// });
+
+// End imgLoader
+
+$(document).on("change","#grayscale",function(){
+
+		 var selected_object = g_editor.canvas.getActiveObject();
+		 if ((selected_object != null))
+		 {
+
+	 if($('#grayscale:checked')){
+		 selected_object.filters.push(new fabric.Image.filters.Grayscale());
+	 }
+
+	 selected_object.applyFilters();
+
+		g_editor.canvas.renderAll();
+	 }
+
+});
+
+$(document).on("change","#sepia",function(){
+
+		 var selected_object = g_editor.canvas.getActiveObject();
+		 if ((selected_object != null))
+		 {
+
+	 if($('#sepia:checked')){
+		 selected_object.filters.push(new fabric.Image.filters.Sepia());
+	 }
+
+	 selected_object.applyFilters();
+
+		g_editor.canvas.renderAll();
+	 }
+
+});
+
+$(document).on("change","#invert",function(){
+
+		 var selected_object = g_editor.canvas.getActiveObject();
+		 if ((selected_object != null))
+		 {
+	 if($('#invert:checked')){
+		 selected_object.filters.push(new fabric.Image.filters.Invert());
+	 }
+
+	 selected_object.applyFilters();
+
+		g_editor.canvas.renderAll();
+	 }
+
+});
+
+$(document).on("change","#convolute",function(){
+
+		 var selected_object = g_editor.canvas.getActiveObject();
+		 if ((selected_object != null))
+		 {
+	 if($('#convolute:checked')){
+		 selected_object.filters.push(new fabric.Image.filters.Convolute({
+  matrix: [ 0, -1,  0,
+           -1,  5, -1,
+            0, -1,  0 ]
+}));
+	 }
+
+	 selected_object.applyFilters();
+
+		g_editor.canvas.renderAll();
+	 }
+
+});
+
+
+
+$(document).on("click","#blur",function(){
+
+		 var selected_object = g_editor.canvas.getActiveObject();
+		 if ((selected_object != null))
+		 {
+	 if($('#blur:checked')){
+		 selected_object.filters.push(new fabric.Image.filters.Blur({
+  blur: 0.5
+}));
+	 }
+
+	 selected_object.applyFilters();
+
+		g_editor.canvas.renderAll();
+
+	 }
+
+});
+
+			g_editor.canvas.on('object:selected', function(o){
+			var activeObj = o.target;
+
+			activeObj.set({'borderColor':'green','cornerColor':'green'});
+
+
+			});
 
 			function create_text_elmt(txt) {
 				var text = new fabric.Text(txt, {

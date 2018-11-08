@@ -1,3 +1,4 @@
+<?php require_once('public/appVars.php') ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,9 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
         <!--  STYLE SHEETS -->
-        <link rel="stylesheet" href="css/bootstrap-3.3.7.min.css">
-        <link rel="stylesheet" href="css/customize.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/bootstrap-3.3.7.min.css">
+        <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/customize.css">
+        <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">

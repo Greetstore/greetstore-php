@@ -6,15 +6,19 @@
 <!-- Scripts Js -->
 
 
-<script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
-<script src="js/bootstrap-3.3.7.min.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/jquery-3.2.1.min.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/bootstrap-3.3.7.min.js" charset="utf-8"></script>
 <!-- <script src="js/fabric.min.js" charset="utf-8"></script> -->
-<script src="js/fabric.js" charset="utf-8"></script>
-<script src="js/fabric-extension.js" charset="utf-8"></script>
-<script src="js/jquery.lazyload.min.js" charset="utf-8"></script>
-<script src="js/modernizr.min.js" charset="utf-8"></script>
-<script src="js/custom/editor.js" charset="utf-8"></script>
-<script src="js/custom/text-editor.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/fabric.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/fabric-extension.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/FileSaver.min.js"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/canvas-toBlob.js"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/jquery.lazyload.min.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/modernizr.min.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/jquery.blockUI.min.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/custom/editor.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/custom/text-editor.js" charset="utf-8"></script>
+
 
 
 
@@ -57,47 +61,113 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal">Close &times;</button>
 
         </div>
         <div class="modal-body">
 
           <div class="row">
-           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-           image 1
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+             <div class="well shapesImage" id="rectangle">
+               <img src="images/shapes/shapes 8.png" alt="" height="100" >
+             </div>
+
            </div>
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            image 2
+             <div class="well shapesImage" id="triangle">
+               <img src="images/shapes/shapes 11.png" alt="" height="100">
+             </div>
            </div>
 
           </div>
 
           <div class="row">
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-           image 1
+             <div class="well shapesImage" id="polygon">
+               <img src="images/shapes/shapes 4.png" alt="" height="100">
+             </div>
+
            </div>
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            image 2
+             <div class="well shapesImage" id="polygon1">
+               <img src="images/shapes/shapes_new.png" alt="" height="100">
+             </div>
            </div>
 
           </div>
 
           <div class="row">
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-           image 1
+             <div class="well shapesImage" id="star">
+               <img src="images/shapes/shapes 12.png" alt="" height="100">
+             </div>
            </div>
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            image 2
+             <div class="well shapesImage" id="circle">
+               <img src="images/shapes/shapes 9.png" alt="" height="100">
+             </div>
+           </div>
+
+
+
+          </div>
+
+          <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+             <div class="well shapesImage" id="heart">
+               <img src="images/shapes/shapes 13.png" alt="" height="100">
+             </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+             <div class="well shapesImage" id="polygon3">
+               <img src="images/shapes/shapes.png" alt="" height="100">
+             </div>
+           </div>
+
+
+
+          </div>
+
+          <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+             <div class="well shapesImage" id="star1">
+               <img src="images/shapes/shapes 14.png" alt="" height="100">
+             </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+             <div class="well shapesImage" id="star2">
+               <img src="images/shapes/shapes 15.png" alt="" height="100">
+             </div>
+           </div>
+
+
+
+          </div>
+
+          <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+             <div class="well shapesImage" id="square">
+               <img src="images/shapes/shapes 5.png" alt="" height="100">
+             </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+             <div class="well shapesImage" id="ellipse">
+               <img src="images/shapes/shapes 10.png" alt="" height="100">
+             </div>
            </div>
 
           </div>
 
           <div class="row">
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-           image 1
+             <div class="well shapesImage" id="polygon4">
+               <img src="images/shapes/shapes 1.png" alt="" height="100">
+             </div>
            </div>
            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            image 2
+             <div class="well shapesImage" id="rounded_square">
+               <img src="images/shapes/shapes 6.png" alt="" height="100">
+             </div>
            </div>
 
           </div>
@@ -109,23 +179,122 @@
   </div>
   <!-- End shapesModal -->
 
+  <!-- imagesModal -->
+   <div class="modal fade" id="imagesModal" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+          <button type="button" class="close" id="imagesrealdiv">Close &times;</button>
+
+          </div>
+          <div class="modal-body">
+
+          <!-- <input type="file" id="imgLoader" name="">
+           <br>
+           <div class="filters" >
+                 <label>
+                <input type="checkbox" id="grayscale"/>
+                <div class="checkbox btn">GrayScale</div>
+              </label>
+              <label>
+                <input type="checkbox"  id="sepia"/>
+                <div class="checkbox btn">Sepia</div>
+              </label>
+              <label>
+             <input type="checkbox" id="invert"/>
+             <div class="checkbox btn">Invert</div>
+           </label>
+           <label>
+             <input type="checkbox"  id="convolute"/>
+             <div class="checkbox btn">Convolute</div>
+           </label>
+           <label>
+          <input type="checkbox" id="blur"/>
+          <div class="checkbox btn">Blur</div>
+        </label>
+           </div> -->
+           <div class="text-center" id="showError">
+
+           </div>
+           <div class="text-center" id="showUploading">
+
+           </div>
+          <div class="uploadedFiles row" id="image_preview" style="min-height:50vh;">
+
+
+          </div>
+          <div class="contentImagesModal">
+           <p style="color:grey;font-weight:bold;">I confirm this content does not infringe any laws
+             or third-party rights like copyright,trademark,or personality
+             rights.I understand Greetstore follows rules and closes the
+             accounts of repeat infringers.I have reviewed Greetstore's
+             <a href="#">Privacy Policy</a> and design rejection reasons.
+           </p>
+          </div>
+          <br>
+          <div class="buttonsImageUpload">
+            <div class="col-sm-12 col-xs-12" style="padding:0px;">
+            <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;margin-bottom:4%;">
+                Camera
+                <input type="file" accept="image/*;capture=camera">
+            </label>
+          </div>
+
+           <div class="col-sm-12 col-xs-12" style="padding:0px;">
+           <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;">
+               Browse
+               <input type="file" name='inputfile' id='inputFile'/>
+           </label>
+         </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End imagesModal -->
+
 <!-- Start textSettingModal -->
 <div class="modal fade allTextModals" id="textSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
-
    <div class="modal-header">
    <span id="textsetting">Text Setting</span>
   <button type="button" class="realdiv" name="button">Close X</button></span>
    </div>
 
    <div class="modal-body">
-     <div class="tab-content">
-        <div id="colorModal" class="tab-pane fade in active">
-         <?php include "includes/colors.php" ?>
+     <div class="containerAll" style="padding:0px;">
+        <div class="row tabs text-center" id="containerSame" style="padding:4% 0%;">
+          <div class="col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="addTextSetting">
+            <i class="fa fa-text-height fa-2x" aria-hidden="true"></i>
+
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="cloneShape">
+            <i class="fa fa-window-restore fa-2x" aria-hidden="true"></i>
+
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="deleteShapesObject">
+           <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendForward">
+            <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
+
+          </div>
+
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendBackward">
+            <i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
+
+          </div>
+
         </div>
-        <div id="fontModal" class="tab-pane fade">
-        <ul class="list-unstyled fontstext text-center striped-list" id="fontModalList">
+        <div id="fontTextModal" class="" style="display:none;">
+          <!-- <div class="modal-header" style="padding:4%">
+          <span id="textsetting">Text Setting</span>
+         <button type="button" class="realdiv" name="button">Close X</button></span>
+          </div> -->
+        <ul class="list-unstyled text-center striped-list" id="fontModalList">
           <li data-id="Alegreya" style="font-family: 'Alegreya', serif;">Algreya</li>
           <li data-id="Alfa Slab One" style="font-family: 'Alfa Slab One', cursive;" >Alfa</li>
           <li data-id="Indie Flower" style="font-family: 'Indie Flower', cursive" >Indie flower</li>
@@ -139,15 +308,19 @@
 
         </ul>
         </div>
-        <div id="bendModal" class="tab-pane fade">
-          <div class="container benddiv">
+        <div id="colorTextModal" class="collapse dropup-content">
+         <?php include "includes/colors.php" ?>
+        </div>
+
+        <div id="bendTextModal" class="collapse dropup-content" style="background:white;">
+          <div class="benddiv">
           <div class="slidecontainer">
 
              <input type="range"  min="1" max="100" value="50" class="slider" id="angle-control">
           </div>
         </div>
         </div>
-        <div id="alignModal" class="tab-pane fade">
+        <div id="alignTextModal" class="collapse dropup-content">
           <div class="row text-center">
             <div class="col-sm-4 col-xs-4 aligntext text-tabs" id="alignTextLeft">
               <i class="fa fa-align-left fa-2x thin" aria-hidden="true"></i>
@@ -168,7 +341,29 @@
 
 
      <!-- <div class="container text-center" id="textEdit"> -->
-     <ul class="nav nav-pills text-center">
+     <div class="row text-center" style="color:#0483c2;border:1px solid;margin-left:0.1%;margin-right:0.1%;">
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs port-item yo" data-toggle="collapse" data-target="#colorTextModal">
+       <i class="fa fa-tint fa-2x" aria-hidden="true"></i>
+       <br>
+     <label for="">Colors</label>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs port-item" id="fontContainer">
+       <i class="fa fa-font fa-2x" aria-hidden="true"></i>
+       <br>
+     <label for="">Font family</label>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs port-item yo" data-toggle="collapse" data-target="#bendTextModal">
+       <i class="fa fa-undo fa-2x fa-rotate-90" aria-hidden="true"></i>
+       <br>
+     <label for="">Text Bend</label>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs port-item yo" data-toggle="collapse" data-target="#alignTextModal">
+       <i class="fa fa-align-left fa-2x" aria-hidden="true"></i>
+       <br>
+     <label for="">Align Text</label>
+     </div>
+   </div>
+     <!-- <ul class="nav nav-pills text-center">
        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 active">
          <a data-toggle="pill" href="#colorModal">
          <span><i class="fa fa-tint fa-2x" aria-hidden="true"></i></span>
@@ -193,7 +388,7 @@
          <p>Align Text</p>
        </a>
        </li>
-     </ul>
+     </ul> -->
      <!-- </div> -->
    </div>
 
@@ -201,5 +396,178 @@
    </div>
  </div>
 <!-- End textSettingModal -->
+
+<!-- Start shapesSettingModal -->
+<div class="modal fade allTextModals" id="shapesSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+   <div class="modal-dialog modal-sm">
+     <div class="modal-content">
+   <div class="modal-header">
+   <span id="textsetting">Shape Setting</span>
+  <button type="button" class="realdivShapes" name="button">Close X</button></span>
+   </div>
+
+   <div class="modal-body">
+     <div class="container-fluid text-center">
+     <div class="row tabs">
+       <div id="colorShapes" class="collapse">
+
+
+       <!-- Startcolors -->
+       <div class="well text-center">
+
+         <div class="custom-radios">
+           <div>
+             <input type="radio" id="color-s-1" name="shapesColor" value="#2ecc71">
+             <label for="color-s-1">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-2" name="shapesColor" value="#3498db">
+             <label for="color-s-2">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-3" name="shapesColor" value="#f1c40f">
+             <label for="color-s-3">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-4" name="shapesColor" value="#e74c3c">
+             <label for="color-s-4">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-5" name="shapesColor" value="#000000">
+             <label for="color-s-5">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-6" name="shapesColor" value="#ffffff">
+             <label for="color-s-6">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-7" name="shapesColor" value="#ffe6cc">
+             <label for="color-s-7">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-8" name="shapesColor" value="#660066">
+             <label for="color-s-8">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-9" name="shapesColor" value="#4d1a00">
+             <label for="color-s-9">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-10" name="shapesColor" value="#66ffff">
+             <label for="color-s-10">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-11" name="shapesColor" value="#ff0000">
+             <label for="color-s-11">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+
+           <div>
+             <input type="radio" id="color-s-12" name="shapesColor" value="#993333">
+             <label for="color-s-12">
+               <span>
+                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+               </span>
+             </label>
+           </div>
+        </div>
+
+       </div>
+
+
+
+
+       <!-- Endcolors -->
+
+       </div>
+       <div class="col-lg-2 col-sm-offset-1 col-xs-offset-1 col-md-2 col-sm-2 col-xs-2 pointer" data-toggle="collapse" data-target="#colorShapes">
+         <i class="fa fa-tint fa-2x" aria-hidden="true"></i>
+
+       </div>
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="cloneShape">
+         <i class="fa fa-window-restore fa-2x" aria-hidden="true"></i>
+
+       </div>
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="deleteShapesObject">
+        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+
+       </div>
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendForward">
+         <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
+
+       </div>
+
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendBackward">
+         <i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
+
+       </div>
+
+     </div>
+     </div>
+
+   </div>
+
+     </div>
+   </div>
+ </div>
+ <!-- End shapesSettingModal -->
+<script type="text/javascript">
+ $('.port-item').click(function(){
+      $('.collapse').collapse('hide');
+    });
+  </script>
 
 </html>

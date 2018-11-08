@@ -1,23 +1,100 @@
 @media only screen and (min-width:240px) and (max-width:350px) {
-  body{
-    overflow: hidden;
-  }
+
   #myCarousel .carousel-image{
     position: relative;
-    left: -8%;
+    left: -8.5%;
   }
+
+  #downloadImage{
+    position: relative;
+    top: -120px;
+  }
+  /* #firstlook{
+    position: relative;
+    top: -120px;
+  } */
+  #alignTextModal{
+    top:0%;
+    padding-bottom:4%;
+    font-size: 12px;
+  }
+
+
 }
+
 
 @media only screen and (min-width:400px) and (max-width:500px) {
   #myCarousel .carousel-image{
-    margin-left: 4%;
+    position: relative;
+    left: 5%;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 834px) {
 
   /*=========== customize ==============*/
 
+
+      input[type=checkbox]{
+        position: absolute;
+        display:none;
+        visibility:hidden;
+      }
+
+      /* A Little Non-Selectable Magic */
+    label,
+    div.checkbox {
+       -webkit-touch-callout: none;
+       -webkit-user-select: none;
+       -khtml-user-select: none;
+       -moz-user-select: none;
+       -ms-user-select: none;
+       user-select: none;
+    }
+
+    /* Default, Non Checked State */
+
+    div.checkbox {
+      display: inline-block;
+      background:green;
+      color: #FFF;
+    }
+
+    /* Checkbox Toggled Hack with Checked State as our Background Position */
+
+    input[type=checkbox]:checked ~ div.checkbox{
+      background-position: -14px 0px;
+      background:orange;
+      color: #000;
+    }
+
+    #shapesModal .shapesImage{
+      padding:10%;margin-bottom:8%;border-radius:0px;text-align:center;cursor:pointer;background-color:#f2f2f2;
+    }
+
+    #shapesSettingModal{
+     width: 100%;
+    }
+
+    #shapesSettingModal .realdivShapes{
+      float:right;background:#445d6c;border:none;color:white;
+    }
+
+    #shapesSettingModal .modal-dialog{
+      width:100%;margin:0px;
+    }
+
+    #shapesSettingModal .modal-header{
+      padding:4px;background:#445d6c;
+    }
+
+    #shapesSettingModal #textsetting{
+      color:white;font-weight:bold;
+    }
+
+    #shapesSettingModal .pointer{
+      cursor: pointer;
+    }
 
      #textSettingModal{
       width: 100%;
@@ -32,7 +109,7 @@
      }
 
      #textSettingModal .aligntext{
-       padding-top:6px;color:grey;
+       color:grey;
      }
 
      #textSettingModal .benddiv{
@@ -40,7 +117,7 @@
      }
 
      #textSettingModal .fontstext{
-       max-height:100px;max-height:100px;overflow-y: auto;white-space: nowrap;font-weight: bold;
+       max-height:150px;overflow: scroll;font-weight: bold;
      }
 
      #textSettingModal .modal-body{
@@ -54,6 +131,57 @@
      #textSettingModal #textsetting{
        color:white;font-weight:bold;
      }
+
+     #alignTextModal{
+       background:#fff;min-width:100%;
+     }
+
+     #textSettingModal .dropup-content{
+    min-width: 95%;
+    max-width: 100%;
+    position: absolute;
+    bottom: 74px;
+    z-index: 99;
+     }
+
+     .modal-header{
+       padding:2%;margin-bottom:2%;
+     }
+
+     #colorTextModal{
+       margin-bottom:2%;right:0%;
+     }
+
+     #fontTextModal{
+       right:0%;
+     }
+
+     #fontModalList{
+       max-height: 120px;margin-bottom:2%;overflow: scroll;font-weight: bold;
+     }
+
+     .dropup-font{
+       position:absolute;
+       bottom:74px;
+       z-index: 99;
+       min-width:100%;
+       background:white;
+     }
+
+       .btn-bs-file{
+      position:relative;
+      }
+      .btn-bs-file input[type="file"]{
+          position: absolute;
+          top: -9999999;
+          filter: alpha(opacity=0);
+          opacity: 0;
+          width:0;
+          height:0;
+          outline: none;
+          cursor: inherit;
+      }
+
 
      #textSettingModal ul.striped-list > li:nth-of-type(odd) {
       background-color: #f2f2f2 ;
@@ -127,7 +255,7 @@
         cursor: pointer;
     }
 
-    }
+
 
 
     /* Liquid radio Button */
@@ -196,8 +324,51 @@
     .custom-radios input[type="radio"]#color-12 + label span {
       background-color: #993333;
     }
+    .custom-radios input[type="radio"]#color-s-1 + label span {
+      background-color: #2ecc71;
+    }
+    .custom-radios input[type="radio"]#color-s-2 + label span {
+      background-color: #3498db;
+    }
+    .custom-radios input[type="radio"]#color-s-3 + label span {
+      background-color: #f1c40f;
+    }
+    .custom-radios input[type="radio"]#color-s-4 + label span {
+      background-color: #e74c3c;
+    }
+    .custom-radios input[type="radio"]#color-s-5 + label span {
+      background-color: #000000;
+    }
+    .custom-radios input[type="radio"]#color-s-6 + label span {
+      background-color: #ffffff;
+    }
+    .custom-radios input[type="radio"]#color-s-7 + label span {
+      background-color: #ffe6cc;
+    }
+    .custom-radios input[type="radio"]#color-s-8 + label span {
+      background-color: #660066;
+    }
+    .custom-radios input[type="radio"]#color-s-9 + label span {
+      background-color: #4d1a00;
+    }
+    .custom-radios input[type="radio"]#color-s-10 + label span {
+      background-color: #66ffff;
+    }
+    .custom-radios input[type="radio"]#color-s-11 + label span {
+      background-color: #ff0000;
+    }
+    .custom-radios input[type="radio"]#color-s-12 + label span {
+      background-color: #993333;
+    }
     .custom-radios input[type="radio"]:checked + label span img {
       opacity: 1;
+    }
+
+    .custom-radios input[type="radio"]#color-s-1 + label span {
+      background-color: #2ecc71;
+    }
+    .custom-radios input[type="radio"]#color-s-2 + label span {
+      background-color: #3498db;
     }
 
     .custom-radios img{
@@ -322,6 +493,12 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0);
 }
 
+#textSettingModal .port-item{
+  font-size: 12px;
+  padding: 3%;
+  border: 1px solid;
+}
+
   #textModal textarea{
     height:120px;
     width: 100%;
@@ -364,23 +541,35 @@
     font-size: 32px;
   }
 
+  #imagesModal .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #imagesModal .modal-content {
+    height: auto;
+    min-height:100%;
+    border-radius: 0;
+
+  }
+
   #editorContainer{
     height: 480px;
   }
 
 
 .allTextModals{
- position: absolute;
- width: 380px;
  padding-right: 0;
  margin-right: 0;
- top: 75%;
+ margin-top: 125%;
  bottom: 0;
  left: 0;
- z-index: 10040;
- overflow: auto;
- overflow-y: auto;
+
 }
+
+}
+
 
 
 @media only screen and (min-width: 768px) {
@@ -414,15 +603,52 @@
 
   #textModal .modal-dialog{
     height:auto;
-    width: 100%;
+    width: 90%;
     margin-left: 38px;
     padding: 0px;
   }
 
   .allTextModals{
-   top: 40%;
+   margin-top: 50%;
   }
 
+  .modal-header{
+    padding:2%;margin-bottom:2%;
+  }
 
+  #colorTextModal{
+    margin-bottom:2%;right:0%;
+  }
+
+  #fontTextModal{
+    right:0%;
+  }
+
+  #fontModalList{
+    max-height: 180px;margin-bottom:0%;overflow: scroll;font-weight: bold;
+  }
+
+  #textSettingModal .dropup-content{
+ min-width: 100%;
+ max-width: 100%;
+ position: absolute;
+ bottom: 80px;
+ z-index: 99;
+  }
+
+ #textSettingModal .well{
+   background: white;
+    padding: 4%;
+    position: relative;
+    right: 0%;
+ }
+
+ #bendTextModal{
+   margin-bottom:5%;
+ }
+
+ #alignTextModal{
+   margin-bottom:4%;
+ }
 
 }

@@ -1,9 +1,13 @@
-<?php include "header.php" ?>
+<?php
+ include "header.php";
+ include "includes/canvasParts.php";
+
+ ?>
 <div class="customized-container">
 
 <!-- Start Navbar -->
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse" id="navbarCss">
       <div class="">
       <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8">
         <a class="navbar-brand logo" href="#">
@@ -27,7 +31,7 @@
       <div class="carousel-inner">
         <div class="item active carousel-image">
               <div id="editorContainer">
-                  <canvas id="editor" height="480" width="480"></canvas>
+                  <canvas id="editor"></canvas>
               </div>
         </div>
       </div>
@@ -42,12 +46,19 @@
       </a>
     </div>
 
+    <?php
+
+     echo get_parts();
+
+     ?>
+
 
  <!-- End Carousel -->
 
+<!-- <button type="button" name="button" id="downloadImage" class="btn btn-primary btn-block">Download Image</button> -->
+<br>
 
-<!-- Start Column Tabs -->
-<div class="container-fluid text-center" id="firstlook">
+<div class="container-fluid text-center" id="firstlook" style="position:fixed;bottom:0px;width:100%;">
 <div class="row tabs">
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" data-toggle="modal" data-target="#textModal">
     <i class="fa fa-text-width fa-2x" aria-hidden="true"></i>
@@ -57,7 +68,7 @@
     <i class="fa fa-object-ungroup fa-2x" aria-hidden="true"></i>
     <label for="">Shapes</label>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" id="imagesModalFirstlook" data-toggle="modal" data-target="#imagesModal">
    <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
     <label for="">&nbsp;Images</label>
   </div>
@@ -65,10 +76,11 @@
     <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
     <label for="">Buy Now</label>
   </div>
-</div>
-</div>
-<!-- End Column Tabs -->
 
 </div>
+</div>
+
+<!-- End Column Tabs -->
+
 
 <?php include "footer.php" ?>
