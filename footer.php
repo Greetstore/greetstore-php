@@ -18,6 +18,7 @@
 <script src="<?php echo SITE_BASE_URL; ?>js/jquery.blockUI.min.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/editor.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/text-editor.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/custom/image-editor.js" charset="utf-8"></script>
 
 
 
@@ -213,12 +214,22 @@
           <div class="checkbox btn">Blur</div>
         </label>
            </div> -->
-           <div class="text-center" id="showError">
+           <!-- <div class="text-center" id="showError">
 
            </div>
            <div class="text-center" id="showUploading">
 
+           </div> -->
+           <div id="errorImage">
+
            </div>
+
+           <div class="progress" style="display:none;">
+           <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+
+           </div>
+         </div>
+
           <div class="uploadedFiles row" id="image_preview" style="min-height:50vh;">
 
 
@@ -236,14 +247,14 @@
             <div class="col-sm-12 col-xs-12" style="padding:0px;">
             <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;margin-bottom:4%;">
                 Camera
-                <input type="file" accept="image/*;capture=camera">
+                <input type="file" name="inputCamera" id="inputCamera" accept="image/*;capture=camera">
             </label>
           </div>
 
            <div class="col-sm-12 col-xs-12" style="padding:0px;">
            <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;">
                Browse
-               <input type="file" name='inputfile' id='inputFile'/>
+               <input type="file" name='inputFile' id='inputFile'/>
            </label>
          </div>
           </div>

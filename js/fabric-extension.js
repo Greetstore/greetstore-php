@@ -17,14 +17,12 @@ fabric.CurvedText = fabric.util.createClass(fabric.Object, {
    fontSize: 24, // in px
    fontWeight: 'normal',
    fontStyle: '', // "normal", "italic" or "oblique".
-    cacheProperties: fabric.Object.prototype.cacheProperties.concat('diameter', 'kerning', 'flipped', 'fill', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'strokeStyle', 'strokeWidth'),
+   cacheProperties: fabric.Object.prototype.cacheProperties.concat('text','diameter', 'kerning', 'flipped', 'fill', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'strokeStyle', 'strokeWidth'),
    strokeStyle: null,
    strokeWidth: 0,
-
    initialize: function(text, options) {
       options || (options = {});
       this.text = text;
-
       this.callSuper('initialize', options);
       this.set('lockUniScaling', true);
 
@@ -69,6 +67,7 @@ fabric.CurvedText = fabric.util.createClass(fabric.Object, {
 
       w = pix.x[n] - pix.x[0];
       h = pix.y[n] - pix.y[0];
+
       var cut = ctx.getImageData(pix.x[0], pix.y[0], w, h);
 
       canvas.width = w;
@@ -77,6 +76,7 @@ fabric.CurvedText = fabric.util.createClass(fabric.Object, {
    },
 
    // Source: http://jsfiddle.net/rbdszxjv/
+
    getCircularText: function()
    {
       var text = this.text,
@@ -114,7 +114,9 @@ fabric.CurvedText = fabric.util.createClass(fabric.Object, {
       ctx.font = this._getFontDeclaration();
 
       // Reverse letters for center inward.
-      if (inwardFacing) { text = text.split('').reverse().join('') };
+      if (inwardFacing) {
+         text = text.split('').reverse().join('');
+       };
 
       // Setup letters and positioning
       ctx.translate(diameter / 2, diameter / 2); // Move to center

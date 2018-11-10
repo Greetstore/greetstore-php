@@ -1,7 +1,7 @@
-
 var G_EDITOR = (function ($, g_editor) {
 
 		$(document).ready( function() {
+
 
 
 			if (Modernizr.mq('(min-width: 340px)')) {
@@ -70,50 +70,50 @@ var G_EDITOR = (function ($, g_editor) {
     //     });
     // });
 
-		function readURL(input) {
-			 if (input.files && input.files[0]) {
-					 var reader = new FileReader();
-					 var name=input.files[0]['name'];
-					 var ext = name.split('.').pop().toLowerCase();
-
-					  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
-					  {
-					   $('#showError').append("<label class='alert alert-danger'>Invalid image type</label>");
-					  }
-						else{
-					 reader.onload = function (e) {
-						 $('#showError label').remove();
-							 $('#image_preview')
-							 .append("<div class='col-sm-4 col-xs-4'><img height='100' width='100' src='"+e.target.result+"'></div>");
-					 }
-
-					 reader.readAsDataURL(input.files[0]);
-					 }
-				 }
-	 }
-
-	 $("#inputFile").change(function () {
-			 readURL(this);
-			 var file_data = $('#inputFile').prop('files')[0];
-			    var form_data = new FormData();
-			    form_data.append('file', file_data);
-			    $.ajax({
-			        url: "upload.php",
-			        type: "POST",
-			        data: form_data,
-			        contentType: false,
-			        cache: false,
-			        processData:false,
-							beforeSend:function(){
-			     $('#showUploading').append("<label class='alert alert-success'>Image is Uploading...</label>");
-			    },
-			        success: function(data){
-									$('#showUploading label').remove();
-			        }
-			    });
-
-
-	 });
+		// function readURL(input) {
+		// 	 if (input.files && input.files[0]) {
+		// 			 var reader = new FileReader();
+		// 			 var name=input.files[0]['name'];
+		// 			 var ext = name.split('.').pop().toLowerCase();
+	 //
+		// 			  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+		// 			  {
+		// 			   $('#showError').append("<label class='alert alert-danger'>Invalid image type</label>");
+		// 			  }
+		// 				else{
+		// 			 reader.onload = function (e) {
+		// 				 $('#showError label').remove();
+		// 					 $('#image_preview')
+		// 					 .append("<div class='col-sm-4 col-xs-4'><img height='100' width='100' src='"+e.target.result+"'></div>");
+		// 			 }
+	 //
+		// 			 reader.readAsDataURL(input.files[0]);
+		// 			 }
+		// 		 }
+	 // }
+	 //
+	 // $("#inputFile").change(function () {
+		// 	 readURL(this);
+		// 	 var file_data = $('#inputFile').prop('files')[0];
+		// 	    var form_data = new FormData();
+		// 	    form_data.append('file', file_data);
+		// 	    $.ajax({
+		// 	        url: "upload.php",
+		// 	        type: "POST",
+		// 	        data: form_data,
+		// 	        contentType: false,
+		// 	        cache: false,
+		// 	        processData:false,
+		// 					beforeSend:function(){
+		// 	     $('#showUploading').append("<label class='alert alert-success'>Image is Uploading...</label>");
+		// 	    },
+		// 	        success: function(data){
+		// 							$('#showUploading label').remove();
+		// 	        }
+		// 	    });
+	 //
+	 //
+	 // });
 
 
 			$("#downloadImage").click(function(){

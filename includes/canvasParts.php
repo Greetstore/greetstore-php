@@ -10,16 +10,19 @@ function get_parts() {
 
     // $part1 = array('name' => "Front",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/customize-images/product/pixel.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
     $part1 = array('name' => "Back",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/product/mobile-cover/Apple-Iphone-8/Apple-Iphone-8.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
-    $part2 = array('name' => "Back",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/customize-imagesproduct/purple-back.png','bg-inc' => '','ov-img' => 'C:\Amey\Apache24\htdocs\CanvasEditor\images\product\Shirt-Bounding-Boxred.png','ov-inc' => '');
-    $parts = array($part1);
+    $part2 = array('name' => "Back1",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/product/mobile-cover/Apple-Iphone-8/pixel.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
+    $parts=array($part1,$part2);
+    $jsonPhp=json_encode($parts);
+    return $jsonPhp;
     $is_first = true;
     $get_editor_parts = '';
     $get_editor_parts .= '';
     $get_editor_parts .= '<div id="product-part-container">';
-    $get_editor_parts .= '<ul id="gs-parts-bar" style="">';
+    $get_editor_parts .= '<ul id="gs-parts-bar" class="list-inline">';
 
     foreach ($parts as $part_data) {
         $part_key = $part_data['name'];
+        $part_part=$part_data['part'];
         $icon = get_proper_value($part_data, 'icon');
         $bg_included_id = get_proper_value($part_data, 'bg-inc');
         $bg_not_included_id = get_proper_value($part_data, 'bg-not-inc');
@@ -28,7 +31,10 @@ function get_parts() {
 
         $class = "";
         if ($is_first)
-            $class = "class='active'";
+            $class = "class='active awesome'";
+        else {
+          $class="class='awesome'";
+        }
             $is_first = false;
             $img_ov_src = "";
 

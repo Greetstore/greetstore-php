@@ -36,21 +36,27 @@
         </div>
       </div>
 
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <a class="left carousel-control" id="minusSlide">
         <i class="fa fa-angle-left fa-lg"></i>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <a class="right carousel-control" id="plusSlide">
           <i class="fa fa-angle-right fa-lg"></i>
-        <span class="sr-only">Next</span>
+        <span class="sr-only" >Next</span>
       </a>
     </div>
 
     <?php
 
-     echo get_parts();
+     $phpJson=get_parts();
+      // echo $phpJson;
 
      ?>
+
+     <script type="text/javascript">
+      var jArray=<?php echo json_encode($phpJson); ?>;
+      var testArray=JSON.parse(jArray);
+     </script>
 
 
  <!-- End Carousel -->
