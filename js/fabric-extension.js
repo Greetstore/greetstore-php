@@ -115,8 +115,11 @@ fabric.CurvedText = fabric.util.createClass(fabric.Object, {
 
       // Reverse letters for center inward.
       if (inwardFacing) {
-         text = text.split('').reverse().join('');
-       };
+        // console.log(typeof text);
+        // text=String(text);
+        text = text.split('').reverse().join('');
+
+        }
 
       // Setup letters and positioning
       ctx.translate(diameter / 2, diameter / 2); // Move to center

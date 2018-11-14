@@ -19,6 +19,7 @@
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/editor.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/text-editor.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/image-editor.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/custom/buynow.js" charset="utf-8"></script>
 
 
 
@@ -62,7 +63,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">Close &times;</button>
+        <button type="button" id="shapesCloseModal" class="close">Close &times;</button>
 
         </div>
         <div class="modal-body">
@@ -329,6 +330,7 @@
 
              <input type="range"  min="1" max="100" value="50" class="slider" id="angle-control">
           </div>
+          <input type="checkbox" id="cb-curved" name="" value="" checked>
         </div>
         </div>
         <div id="alignTextModal" class="collapse dropup-content">
@@ -409,7 +411,7 @@
 <!-- End textSettingModal -->
 
 <!-- Start shapesSettingModal -->
-<div class="modal fade allTextModals" id="shapesSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div class="modal fade allShapeTextModals" id="shapesSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">
@@ -575,6 +577,48 @@
    </div>
  </div>
  <!-- End shapesSettingModal -->
+
+<!-- Start imageSettingModal -->
+<div class="modal fade allShapeTextModals" id="imageSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+   <div class="modal-dialog modal-sm">
+     <div class="modal-content">
+   <div class="modal-header">
+   <span id="textsetting">Image Setting</span>
+  <button type="button" class="realImageShapes" name="button">Close X</button></span>
+   </div>
+
+   <div class="modal-body">
+     <div class="container-fluid text-center">
+     <div class="row tabs">
+
+       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="cloneShape">
+         <i class="fa fa-window-restore fa-2x" aria-hidden="true"></i>
+
+       </div>
+       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="deleteShapesObject">
+        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+
+       </div>
+       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="sendForward">
+         <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
+
+       </div>
+
+       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="sendBackward">
+         <i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
+
+       </div>
+
+     </div>
+     </div>
+
+   </div>
+
+     </div>
+   </div>
+ </div>
+<!-- End imageSettingModal -->
+
 <script type="text/javascript">
  $('.port-item').click(function(){
       $('.collapse').collapse('hide');

@@ -75,6 +75,22 @@
      width: 100%;
     }
 
+    #imageSettingModal .realImageShapes{
+      float:right;background:#445d6c;border:none;color:white;
+    }
+
+    #imageSettingModal .modal-dialog{
+      width:100%;margin:0px;
+    }
+
+    #imageSettingModal .modal-header{
+      padding:4px;background:#445d6c;
+    }
+
+    #imageSettingModal #textsetting{
+      color:white;font-weight:bold;
+    }
+
     #shapesSettingModal .realdivShapes{
       float:right;background:#445d6c;border:none;color:white;
     }
@@ -567,6 +583,14 @@
 
 }
 
+.allShapeTextModals{
+  padding-right: 0;
+  margin-right: 0;
+  margin-top: 140%;
+  bottom: 0;
+  left: 0;
+}
+
 }
 
 
@@ -608,7 +632,15 @@
   }
 
   .allTextModals{
-   margin-top: 50%;
+   margin-top: 80%;
+  }
+
+  .allShapeTextModals{
+    padding-right: 0;
+    margin-right: 0;
+    margin-top: 110%;
+    bottom: 0;
+    left: 0;
   }
 
   .modal-header{

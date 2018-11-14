@@ -70,7 +70,7 @@
     <i class="fa fa-text-width fa-2x" aria-hidden="true"></i>
     <label for="">Add Text</label>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" data-toggle="modal" data-target="#shapesModal">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" id="shapesModalFirstlook" data-toggle="modal" data-target="#shapesModal">
     <i class="fa fa-object-ungroup fa-2x" aria-hidden="true"></i>
     <label for="">Shapes</label>
   </div>
@@ -78,7 +78,7 @@
    <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
     <label for="">&nbsp;Images</label>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs buynow">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs buynow" id="buynowBtn">
     <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
     <label for="">Buy Now</label>
   </div>

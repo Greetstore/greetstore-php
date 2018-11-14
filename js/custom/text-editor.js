@@ -5,7 +5,12 @@ var G_EDITOR = (function ($, g_editor) {
 
 
 			if (Modernizr.mq('(min-width: 340px)')) {
-				$('#navbarCss').css('margin-bottom','15%');
+				if(Modernizr.mq('(min-height:750px)')){
+					$('#navbarCss').css('margin-bottom','25%');
+				}
+        else{
+					$('#navbarCss').css('margin-bottom','15%');
+				}
 			}
 
 
@@ -17,6 +22,18 @@ var G_EDITOR = (function ($, g_editor) {
 				$('#firstlook').show();
 				$('#imagesModal').modal("hide");
 			});
+
+			$(document).on("click","#shapesModalFirstlook",function(){
+				$('#firstlook').hide();
+			});
+
+			$(document).on("click","#shapesCloseModal",function(){
+				$('#firstlook').show();
+				$('#shapesModal').modal("hide");
+			});
+
+
+
 
 			$(document).on("click","#fontContainer",function(){
 
@@ -33,9 +50,9 @@ var G_EDITOR = (function ($, g_editor) {
 							 $('#containerSame').toggle();
 							$('#fontTextModal').toggle();
 							if($("#containerSame").is(":visible")){
-									$('.allTextModals').css('margin-top','50%');
+									$('.allTextModals').css('margin-top','80%');
 							} else{
-									$('.allTextModals').css('margin-top','40%');
+									$('.allTextModals').css('margin-top','70%');
 							}
 						}
 
@@ -46,7 +63,7 @@ var G_EDITOR = (function ($, g_editor) {
 				if (Modernizr.mq('(max-width: 500px)')) {
 				$('.allTextModals').css('margin-top','125%');
 			}else{
-				$('.allTextModals').css('margin-top','50%');
+				$('.allTextModals').css('margin-top','80%');
 			}
 				$('#containerSame').show();
 				$('#fontTextModal').hide();
@@ -157,7 +174,12 @@ var G_EDITOR = (function ($, g_editor) {
 				var new_text = $('#new_text').val();
 				if((selected_object != null) && (selected_object.type == "text" || selected_object.type == "curved-text")){
 					selected_object.set("text",new_text);
-						g_editor.canvas.renderAll();
+					g_editor.canvas.renderAll();
+				}
+				else if((selected_object != null) && (selected_object.type == "group" )){
+					selected_object.set("originalText",new_text);
+ 					add_curved_text(selected_object.get("originalText"),selected_object.get("top"),selected_object.get("left"));
+					g_editor.canvas.renderAll();
 				}
 				else{
 				add_text(new_text,false,false);
@@ -182,93 +204,286 @@ var G_EDITOR = (function ($, g_editor) {
 			}
 
 
+		//
+		// $(document).on('change','#angle-control',function(){
+		//
+    //   var sliderValue=$('#angle-control').val();
+		//
+		// 	var flipped=false;
+		// 	var selected_object = g_editor.canvas.getActiveObject();
+ 		//  if ((selected_object != null) && (selected_object.type == "text"))
+ 		//  {
+		// 	 if(sliderValue>55)
+		// 		 flipped=true;
+		// 		 var CurvedText = new fabric.CurvedText(selected_object.get("text"),{
+		// 	        // width: 100,
+		// 	        // height: 50,
+		// 				 left: selected_object.get("left"),
+		// 				 top: selected_object.get("top"),
+		// 				 textAlign: 'center',
+		// 				 fill: selected_object.get("fill"),
+		// 				 radius: 50+10*(sliderValue-55),
+		// 				 fontSize: 20,
+		// 				 spacing: 20+5*(sliderValue-55),
+		// 				 flipped:flipped,
+		// 	       fontFamily:selected_object.get("fontFamily"),
+		// 				 originX:selected_object.get("originX"),
+		// 				 kerning:0.5*(sliderValue-55),
+		// 		 });
+		//
+		// 		 g_editor.canvas.remove(selected_object);
+		// 		 g_editor.canvas.setActiveObject(CurvedText);
+		//
+		// 		 g_editor.canvas.add(CurvedText).renderAll();
+		// 		 CurvedText.on('selected', function() {
+		// 			 console.log(typeof CurvedText);
+		// 			 $("#textModal").modal("show");
+		//
+		// 		 });
+		// 	}
+		//  else{
+		//
+		// 	if((selected_object != null) && (selected_object.type == "curved-text")){
+		// 		if(sliderValue>=55){
+		// 			// selected_object.set("fontSize",selected_object.get("fontSize")+0.1*(sliderValue-55));
+		// 			selected_object.set("radius",50+10*(sliderValue-55));
+		// 			selected_object.set("kerning",0.5*(sliderValue-55));
+		// 			// selected_object.set("angle",-Math.PI*(sliderValue-55));
+		// 			selected_object.set("spacing",20+10*(sliderValue-55));
+		// 			selected_object.set("flipped",true);
+		// 			selected_object.set("originX",selected_object.get("originX"));
+		//
+		// 		}else if(sliderValue<=45){
+		// 			// selected_object.set("fontSize",selected_object.get("fontSize")+(45-sliderValue));
+		// 			selected_object.set("radius",50+10*(45-sliderValue));
+		// 			selected_object.set("kerning",0.5*(45-sliderValue));
+		// 			selected_object.set("flipped",false);
+		// 			selected_object.set("originX",selected_object.get("originX"));
+		//
+		// 		}
+		// 		else{
+		// 			var text = new fabric.Text(selected_object.get("text"),{
+		//
+		// 					left: selected_object.get("left"),
+		// 					top: selected_object.get("top"),
+		// 					textAlign: 'center',
+		// 					fill: selected_object.get("fill"),
+		// 					radius: 50,
+		// 					fontSize: 20,
+		// 					spacing: 20,
+		// 		      fontFamily:selected_object.get("fontFamily"),
+		// 					originX:selected_object.get("originX")
+		// 			});
+		//
+		// 			g_editor.canvas.remove(selected_object);
+		// 			g_editor.canvas.setActiveObject(text);
+		// 			g_editor.canvas.add(text);
+		//
+		// 								text.on("selected",function(){
+		// 									console.log(typeof text);
+		// 									$("#textModal").modal("show");
+		// 								});
+		//
+		//
+		// 		}
+		// 		g_editor.canvas.renderAll();
+		// 	}
+		// }
+		//
+		// });
 
-		$(document).on('change','#angle-control',function(){
-
-      var sliderValue=$('#angle-control').val();
-			var flipped=false;
-			var selected_object = g_editor.canvas.getActiveObject();
- 		 if ((selected_object != null) && (selected_object.type == "text"))
- 		 {
-			 if(sliderValue>55)
-				 flipped=true;
-				 var CurvedText = new fabric.CurvedText(selected_object.get("text"),{
-			 //        width: 100,
-			 //        height: 50,
-						 left: selected_object.get("left"),
-						 top: selected_object.get("top"),
-						 textAlign: 'center',
-						 fill: selected_object.get("fill"),
-						 radius: 50+10*(sliderValue-55),
-						 fontSize: 20,
-						 spacing: 20+5*(sliderValue-55),
-						 flipped:flipped,
-			       fontFamily:selected_object.get("fontFamily"),
-						 originX:selected_object.get("originX"),
-						 kerning:0.5*(sliderValue-55),
-				 });
-
-				 g_editor.canvas.remove(selected_object);
-				 g_editor.canvas.setActiveObject(CurvedText);
-
-				 g_editor.canvas.add(CurvedText).renderAll();
-				 CurvedText.on('selected', function() {
-
-					 $("#textModal").modal("show");
-
-				 });
+$(document).on('change','#angle-control',function(){
+	var sliderValue=$('#angle-control').val();
+	var is_curved = $("#cb-curved").is(":checked");
+	var selected_object = g_editor.canvas.getActiveObject();
+	if (is_curved)
+	{
+			if (selected_object != null)
+			{
+					var left = selected_object.get("left");
+					var top = selected_object.get("top");
+					if (selected_object.type == "text")
+					{
+							var text = selected_object.get("text");
+							// g_editor.canvas.remove(selected_object);
+							add_curved_text(text, top, left);
+							//g_editor.save_canvas();
+							g_editor.canvas.renderAll();
+							$("#cb-curved").attr('checked', 'checked');
+					}
 			}
-		 else{
+	}
+	else
+	{
+			if (selected_object != null)
+			{
+					var left = selected_object.get("left");
+					var top = selected_object.get("top");
+					if (selected_object.type == "group")
+					{
+							var text = selected_object.get("originalText");
+							// g_editor.canvas.remove(selected_object);
+							add_text(text, top, left);
+							//g_editor.save_canvas();
+							g_editor.canvas.renderAll();
+					}
+			}
+	}
+});
 
-			if((selected_object != null) && (selected_object.type == "curved-text")){
-				if(sliderValue>=55){
-					// selected_object.set("fontSize",selected_object.get("fontSize")+0.1*(sliderValue-55));
-					selected_object.set("radius",50+10*(sliderValue-55));
-					selected_object.set("kerning",0.5*(sliderValue-55));
-					// selected_object.set("angle",-Math.PI*(sliderValue-55));
-					selected_object.set("spacing",20+10*(sliderValue-55));
-					selected_object.set("flipped",true);
-					selected_object.set("originX",selected_object.get("originX"));
+$("#angle-control").change(function () {
+					var selected_object = g_editor.canvas.getActiveObject();
+					if ((selected_object != null) && (selected_object.type == "group"))
+							recreate_group(selected_object);
+			});
 
-				}else if(sliderValue<=45){
-					// selected_object.set("fontSize",selected_object.get("fontSize")+(45-sliderValue));
-					selected_object.set("radius",50+10*(45-sliderValue));
-					selected_object.set("kerning",0.5*(45-sliderValue));
-					selected_object.set("flipped",false);
-					selected_object.set("originX",selected_object.get("originX"));
+			function recreate_group(group) {
+		            var left = group.get("left");
+		            var top = group.get("top");
+		            // g_editor.canvas.remove(group);
+		            add_curved_text(group.originalText, top, left);
+		        }
 
-				}
-				else{
-					var text = new fabric.Text(selected_object.get("text"),{
+			function add_curved_text(str, custom_top, custom_left) {
+								var len = str.length;
+								var s;
+								var selected_object=g_editor.canvas.getActiveObject();
 
-							left: selected_object.get("left"),
-							top: selected_object.get("top"),
-							textAlign: 'center',
-							fill: selected_object.get("fill"),
-							radius: 50,
-							fontSize: 20,
-							spacing: 20,
-				      fontFamily:selected_object.get("fontFamily"),
-							originX:selected_object.get("originX")
-					});
+									var color=selected_object.get("fill");
 
-					g_editor.canvas.remove(selected_object);
-					g_editor.canvas.setActiveObject(text);
-					g_editor.canvas.add(text);
+								if($('#angle-control').val()>50){
 
+									var radius = 50+($("#angle-control").val()-50);
+									// var kerning=0.5*($('#angle-control').val()-55);
+									var spacing = 10+($("#angle-control").val()-50);
+										var fontFamily=selected_object.get("fontFamily");
+												g_editor.canvas.remove(selected_object);
+												var textH=true;
+								}
+								else if($('#angle-control').val()<45){
+
+									var radius = 50+(45-$("#angle-control").val());
+									var spacing =10+(45-$("#angle-control").val());
+										var fontFamily=selected_object.get("fontFamily");
+												g_editor.canvas.remove(selected_object);
+												var textH=true;
+								}else{
+									if(selected_object.type=="group"){
+										var txt=selected_object.get("originalText");
+									}else{
+										var txt=selected_object.get("text");
+									}
+									var text = new fabric.Text(txt, {
+													top:selected_object.get("top"),
+													left:selected_object.get("left"),
+													fontSize: 20,
+													textAlign:'center',
+													fontWeight: 'normal',
+													fontStyle: 'bold',
+													textDecoration: 'none',
+													fill: selected_object.get("fill"),
+													fontFamily:selected_object.get("fontFamily"),
+													opacity: 1,
+													// originX:'center'
+
+									//backgroundColor: bgColor
+
+											});
+
+										g_editor.canvas.remove(selected_object);
+										g_editor.canvas.add(text);
+										g_editor.canvas.setActiveObject(text);
+										g_editor.canvas.renderAll();
 										text.on("selected",function(){
-											$("#textModal").modal("show");
+											$('#textModal').modal('show');
 										});
+										var textH=false;
 
+								}
 
-				}
-				g_editor.canvas.renderAll();
-			}
-		}
+								if(textH){
 
-		});
+																	if (!radius)
+																			radius = 150;
+																	if (!spacing)
+																			spacing = 10;
+																	var curAngle = 0;
+																	var angleRadians = 0;
+																	var align = 0;
+																	var centerX = g_editor.canvas.getWidth() / 2;
+																	var centerY = g_editor.canvas.getHeight() - 30;
+																	align = (spacing / 2) * (len - 1);
+																	var reverse = false;
+																	if($('#angle-control').val()>50){
+																		reverse =true;
+																	}
+																	var coef = 1;
+																	if (reverse)
+																			coef = -1;
+																	var items = [];
+																	for (var n = 0; n < len; n++) {
+																			s = str[n];
+																			var text = create_text_elmt(s);
+																			curAngle = (n * parseInt(spacing, 10)) - align;
+																			angleRadians = curAngle * (Math.PI / 180);
+																			if (reverse)
+																			{
+																					curAngle = (-n * parseInt(spacing, 10)) + align;
+																					angleRadians = curAngle * (Math.PI / 180);
+																			}
 
+																			var top = (centerX + (-Math.cos(angleRadians) * radius)) * coef;
+																			var left = (centerY + (Math.sin(angleRadians) * radius)) * coef;
+																			text.set('top', top);
+																			text.set('left', left);
+																			text.set('Angle',curAngle);
+																			text.set('fill',color);
+																			text.set('fontFamily',fontFamily);
+																			items.push(text);
+																	}
 
+																	var group = new fabric.Group(items, {
+
+																			left: 150,
+																			top: 100,
+											               // fontFamily: fontFamily,
+											//                fontSize: font_size,
+											//                fontWeight: fontWeight,
+											//                fontStyle: fontStyle,
+											//                textDecoration: textDecoration,
+											               // selectable: true,
+																			 // fill: 'blue',
+											//                opacity: opacity,
+																	});
+
+																	if (custom_top != null)
+																			g_editor.canvas.setActiveObject(group);
+																			group.on("selected",function(){
+																				$("#textModal").modal("show");
+																			});
+																	//g_editor.setCustomProperties(group);
+																	group["originalText"] = str;
+																	group["radius"] = radius;
+																	group["spacing"] = spacing;
+																	group["fill"]=color;
+																	group["fontFamily"]= fontFamily,
+																	g_editor.canvas.add(group);
+																	if (custom_top == null)
+																			group.center();
+																	else
+																	{
+																			group.set("left", custom_left);
+																			group.set("top", custom_top);
+                                      group.set("fontFamily",fontFamily);
+																			group.set("fill",color);
+																	}
+																	//g_editor.save_canvas();
+																	g_editor.canvas.renderAll();
+														// g_editor.canvas.sendBackwards(group);
+																	group.setCoords();
+								}
+
+						}
 
 		$(document).on("click", "#rectangle", function () {
 
@@ -779,11 +994,41 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 						});
 
 			$(document).on("click","#cloneShape",function(){
-				var object = fabric.util.object.clone(g_editor.canvas.getActiveObject());
-		    object.set("top", object.top+5);
-		    object.set("left", object.left+5);
-		    g_editor.canvas.add(object);
-				g_editor.canvas.renderAll();
+				var Aobj = g_editor.canvas.getActiveObject(); //canLayer.item(0);
+    Aobj.clone(function (o) {
+        var vobj = o;
+        if (vobj) {
+            vobj.set({
+                left: Aobj.get('left')+5,
+                top: Aobj.get('top')+5
+            });
+            g_editor.canvas.add(vobj);
+            // vobj.set('fill', '#fff');
+            // vobj.set('width', 60);
+            g_editor.canvas.renderAll();
+            vobj.on("selected",function(){
+
+							if(vobj.type=="text" || vobj.type=="group"){
+									$('#textModal').modal('show');
+							}
+              else if(vobj.type=="image"){
+								$('#imageSettingModal').modal('show');
+								$('#firstlook').hide();
+							}
+							else{
+								$('#shapesSettingModal').modal('show');
+								$('#firstlook').hide();
+							}
+						});
+        } else {
+            alert("Sorry Object Not Initialized");
+        }
+    });
+				// var object = fabric.util.object.clone(g_editor.canvas.getActiveObject());
+		    // object.set("top", object.top+5);
+		    // object.set("left", object.left+5);
+		    // g_editor.canvas.add(object);
+				// g_editor.canvas.renderAll();
 
 			});
 
@@ -814,6 +1059,12 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			 selected_object.set({fill:value});
 				g_editor.canvas.renderAll();
 			 }
+			 else if(selected_object.type=="group"){
+				 var value = $('input[name=color]:checked').val();
+				 selected_object.set("fill",value);
+				 add_curved_text(selected_object.get("originalText"),selected_object.get("top"),selected_object.get("left"));
+				 g_editor.canvas.renderAll();
+			 }
 
 		});
 
@@ -837,6 +1088,17 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			 selected_object.set("fontFamily",value);
 			 g_editor.canvas.renderAll();
 			}
+			else if((selected_object != null) && (selected_object.type == "group")){
+				var value = $(this).attr("data-id");
+				selected_object.forEachObject(function(a) {
+						a.set('fontFamily', value);
+
+						g_editor.canvas.renderAll();
+
+				});
+				// add_curved_text(selected_object.get("originalText"),selected_object.get("top"),selected_object.get("left"));
+				// g_editor.canvas.renderAll();
+			}
 
 		});
 
@@ -846,7 +1108,13 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			{
 				selected_object.set("textAlign","left");
 		 g_editor.canvas.renderAll();
-		}
+	 }else if((selected_object!=null)&& (selected_object.type=="group")){
+
+				 selected_object.forEachObject(function (a) {
+						 a.set("textAlign", 'left');
+						 g_editor.canvas.renderAll();
+				 });
+			 }
 		});
 
 		$(document).on("click","#alignTextCenter",function(){
@@ -855,7 +1123,13 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			{
 				selected_object.set("textAlign","center");
 		 g_editor.canvas.renderAll();
-		}
+		}else if((selected_object!=null)&& (selected_object.type=="group")){
+
+ 				 selected_object.forEachObject(function (a) {
+ 						 a.set("textAlign",'center');
+ 						 g_editor.canvas.renderAll();
+ 				 });
+ 			 }
 		});
 
 		$(document).on("click","#alignTextRight",function(){
@@ -865,7 +1139,13 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
      selected_object.set("textAlign","right");
 		 g_editor.canvas.renderAll();
-		}
+		}else if((selected_object!=null)&& (selected_object.type=="group")){
+
+ 				 selected_object.forEachObject(function (a) {
+ 						 a.set("textAlign", 'right');
+ 						 g_editor.canvas.renderAll();
+ 				 });
+ 			 }
 		});
 
    // Start imgLoader
@@ -1010,7 +1290,7 @@ $(document).on("click","#blur",function(){
 			function create_text_elmt(txt) {
 				var text = new fabric.Text(txt, {
 					      top:170,
-								left:185,
+								left:150,
                 fontSize: 20,
 								textAlign:'center',
                 fontWeight: 'normal',
@@ -1018,7 +1298,7 @@ $(document).on("click","#blur",function(){
                 textDecoration: 'none',
                 fill: 'black',
                 opacity: 1,
-								originX:'center'
+								// originX:'center'
 
 				//backgroundColor: bgColor
 

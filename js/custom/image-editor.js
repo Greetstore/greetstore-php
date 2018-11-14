@@ -3,6 +3,11 @@ var G_EDITOR = (function ($, g_editor) {
 
 		$(document).ready( function() {
 
+			$('.realImageShapes').click(function(){
+				$('#imageSettingModal').modal('hide');
+				$('#firstlook').show();
+			});
+
       $("#inputFile").change(function () {
 
                  	 var file = $('#inputFile').prop('files')[0];
@@ -102,10 +107,11 @@ var G_EDITOR = (function ($, g_editor) {
                                // end fabricJS stuff
 
                                image.on("selected",function(){
-                                 $("#imagesModal").modal("show");
+																 $('#firstlook').hide();
+                                 $('#imageSettingModal').modal("show");
                                });
                              }
-                   }, 2000);
+                   }, 1000);
                   // SHOW SUCCESS
                   // upload_image_callback(response, false, false, false);
                 }

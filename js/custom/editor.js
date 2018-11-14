@@ -52,6 +52,7 @@ var G_EDITOR = (function ($, g_editor) {
 	});
 
 	function get_optimal_canvas_dimensions() {
+
             var available_width = $("#editorContainer").outerWidth();
             var available_height = $("#editorContainer").outerHeight()*2.8/2;
             var canvas_w = 0;
@@ -140,9 +141,13 @@ function init_canvas() {
 														g_editor.serialized_parts[data_id].pop();
 												}
 												g_editor.canvasManipulationsPosition[data_id]++;
-												var json = JSON.stringify(g_editor.canvas.toJSON(['text','lockMovementX','lockMovementY', 'lockRotation', 'lockScalingX', 'lockScalingY', 'lockDeletion', 'originalText', 'radius', 'spacing','hoverCursor','evented','hasControls','hasBorders','selectable','width','height','transparentCorners']));
+												if(json!="undefined")
+													// console.log(json);
+												var json = JSON.stringify(g_editor.canvas.toJSON(['text','diameter', 'kerning','lockMovementX','lockMovementY', 'lockRotation', 'lockScalingX', 'lockScalingY', 'lockDeletion', 'originalText', 'radius', 'spacing','hoverCursor','evented','hasControls','hasBorders','selectable','width','height','transparentCorners','fontFamily']));
+                        	// console.log(json);
 												g_editor.serialized_parts[data_id].push(json);
 												// console.log(g_editor.serialized_parts[data_id]);
+
 
 												// g_editor.refresh_undo_redo_status();
 										}
@@ -357,10 +362,9 @@ function init_canvas() {
 															 // rescale_canvas_if_needed();
 															 $.unblockUI();
 													 },function(o,object){
-														 if((object.type=="text")||(object.type=="curved-text")){
+														 if((object.type=="text")||(object.type=="group")||(object.type=="curved-text")){
 															 object.on("selected",function(){
-																 $('#firstlook').hide();
-																 $('#textSettingModal').modal("show");
+																 $('#textModal').modal("show");
 															 });
 														 }
 														 else if((object.type=="rect")||(object.type=="ellipse")||(object.type=="circle")||(object.type=="triangle")||(object.type=="path")||(object.type=="polygon")){
@@ -532,7 +536,11 @@ function init_canvas() {
 												var height = $("#editorContainer").outerHeight()*1.5;
 												// var backgroundImage1 = new fabric.Image.fromURL(bg_not_included_url, function(myImg) {
 												var backgroundImage1 = new fabric.Image.fromURL(bg_not_included_url, function(myImg) {
+													if (Modernizr.mq('(max-width: 500px)')) {
 													var img1 = myImg.set({ left: -45, top: -40, selectable: false, hoverCursor: 'default',evented : false,id : "mobile"}).scale(0.5);
+												}else{
+														var img1 = myImg.set({ left: -125, top: -80, selectable: false, hoverCursor: 'default',evented : false,id : "mobile"}).scale(0.7);
+												}
 													g_editor.canvas.add(img1);
 													img1.hasControls = false;
 													img1.hasBorders = false;
@@ -564,6 +572,163 @@ function init_canvas() {
 		// 	g_editor.canvas.add(myImg);
 		// 	g_editor.canvas.renderAll();
 		// });
+
+		$('#buynowBtn').click(function(){
+			var part_index=i;
+			generate_canvas_part(part_index,false);
+			console.log("done");
+		});
+
+		// GENERATE CANVAS PART
+	function generate_canvas_part(part_index,preview)
+		{
+
+	var watermark = false;
+	var generate_svg = true;
+	var output_format = "png";
+		g_editor.selected_part = part_index;
+		preview = typeof preview !== 'undefined' ? preview : true;
+		var data_id= testArray[part_index].name;
+		console.log(data_id);
+
+		//     var data_part_img = $("#gs-parts-bar > li:eq(" + part_index + ")").attr("data-url");
+	var data_part_img = "";
+				g_editor.canvas.clear();
+				if (typeof g_editor.serialized_parts[data_id] == "undefined")
+				{
+						g_editor.serialized_parts[data_id] = ["{}"];
+				}
+
+	           // console.log(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]]);
+				g_editor.canvas.loadFromJSON(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]],
+								function () {
+										// applyImageFilters();
+										load_background_overlay_if_needed(g_editor.selected_part, function () {
+												var multiplier = 1;
+												if (preview)
+														multiplier = 1;
+												//We split the multiplier per 2 if we're in retina mode
+												 if( window.devicePixelRatio !== 1 )
+														 multiplier=multiplier/2;
+												var image = g_editor.canvas.toDataURL({format: output_format, multiplier: multiplier, quality: 1});
+
+												var svg = "";
+									if (generate_svg)
+														svg = g_editor.canvas.toSVG();
+										//     if (g.generate_svg)
+										//         svg = g_editor.canvas.toSVG();
+												var blob_image = dataURItoBlob(image);
+												if (preview)
+												{
+
+														var modal_content = "";
+														if (watermark)
+														{
+																var frm_data = new FormData();
+																frm_data.append("action", "get_watermarked_preview");
+																frm_data.append("watermark", g.watermark);
+																frm_data.append("product-id", g.global_variation_id);
+																frm_data.append("image", blob_image);
+	//                                    frm_data = convert_final_canvas_parts_to_blob(frm_data);
+																$.ajax({
+																		type: 'POST',
+																		url: ajax_object.ajax_url,
+																		data: frm_data,
+																		processData: false,
+																		contentType: false
+																}).done(function (data) {
+																		if (g_editor.is_json(data))
+																		{
+																				var response = JSON.parse(data);
+																				if (data_part_img)
+																						modal_content = "<div style='background-image:url(" + data_part_img + ");'><img src='" + response.url + "'></div>";
+																				else
+																						modal_content = "<div><img src='" + response.url + "'></div>";
+																				$("#gModal .modal-body ").append(modal_content);
+																		}
+																		else
+																		{
+																				$("#debug").html(data);
+																		}
+																});
+														}
+														else
+														{
+																if (data_part_img)
+																		modal_content = "<div style='background-image:url(" + data_part_img + ");'><img src='" + image + "'></div>";
+																else {
+			//   modal_content = "<div><img src='" + image + "'></div>";
+			if(g_editor.preview_part == 0) {
+				modal_content = "<div class='item active'><img src='" + image + "' alt='preview image'></div>";
+				g_editor.preview_part =1;
+			} else
+				modal_content = "<div class='item'><img src='" + image + "' alt='preview image'></div>";
+				}
+
+																$("#gModal .modal-body .carousel-inner").append(modal_content);
+														}
+												}
+												else
+												{
+										// alert("inside print else");
+														var canvas_obj = $.parseJSON(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]]);
+													// console.log(canvas_obj);
+														var layers = [];
+										var print_layers = true;
+																						// if (g.print_layers)
+										if (print_layers)
+														{
+																var objects = canvas_obj.objects;
+																$.each(objects, function (key, curr_object) {
+																		g_editor.canvas.clear();
+																		var tmp_canvas_obj = canvas_obj;
+																		tmp_canvas_obj.objects = [curr_object];
+																		var tmp_canvas_json = JSON.stringify(tmp_canvas_obj);
+																		g_editor.canvas.loadFromJSON(tmp_canvas_json, function () {
+																				// applyImageFilters();
+																				g_editor.canvas.renderAll.bind(g_editor.canvas);
+																				//Removes overlay not included from layers
+																				load_background_overlay_if_needed(g_editor.selected_part, "", true);
+																				var multiplier = g_editor.canvas.getWidth() / g_editor.canvas.getWidth();
+																				var layer = g_editor.canvas.toDataURL({format: output_format, multiplier: multiplier, quality: 1});
+																				// console.log(layer);
+																				var blob_layer = dataURItoBlob(layer);
+																				layers.push(blob_layer);
+																				//Loads the complete canvas before the save later otherwise, we end up with the last layer loaded as part data
+																				if (key == objects.length - 1)
+																				{
+																						g_editor.canvas.loadFromJSON(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]]);
+																						// applyImageFilters();
+																				}
+																		});
+																});
+														}
+														g_editor.final_canvas_parts[data_id] = {json: g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]], image: blob_image, original_part_img: data_part_img, layers: layers, svg: svg};
+												}
+												load_background_overlay_if_needed(g_editor.selected_part);
+										}, true);
+								});
+		}
+
+
+		// CONVERT URL TO BLOB
+			function dataURItoBlob(dataURI) {
+								// convert base64/URLEncoded data component to raw binary data held in a string
+								var byteString;
+								if (dataURI.split(',')[0].indexOf('base64') >= 0)
+										byteString = atob(dataURI.split(',')[1]);
+								else
+										byteString = unescape(dataURI.split(',')[1]);
+								// separate out the mime component
+								var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+								// write the bytes of the string to a typed array
+								var ia = new Uint8Array(byteString.length);
+								for (var i = 0; i < byteString.length; i++) {
+										ia[i] = byteString.charCodeAt(i);
+								}
+								var blob = new Blob([ia], {type: mimeString});
+								return blob;
+						}
 
 
 
