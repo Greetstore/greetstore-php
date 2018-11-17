@@ -266,6 +266,39 @@
     </div>
     <!-- End imagesModal -->
 
+    <!-- Start buyNowModal -->
+    <div class="modal fade" id="buyNowModal" role="dialog" data-backdrop="static" data-keyboard="false">
+       <div class="modal-dialog modal-sm">
+         <div class="modal-content">
+           <div class="modal-header">
+           <button type="button" class="close" id="buynowdiv">Close &times;</button>
+
+           </div>
+           <div class="modal-body">
+
+          <div class="cartContainer" style="margin-top:40%;">
+           <h4 class="text-center">Are you sure you want to proceed ? </h4>
+           <a>Note : You cannot edit the design later.</a>
+           <hr>
+           <div class="row">
+             <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+               <a class="btn btn-success btn-block" id="addToCart">Yes,I m done</a>
+             </div>
+             <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+               <a class="btn btn-danger btn-block" id="canceldivbuy">No,Wait</a>
+             </div>
+           </div>
+          </div>
+
+
+           </div>
+           </div>
+
+         </div>
+       </div>
+     </div>
+    <!-- End buyNowModal -->
+
 <!-- Start textSettingModal -->
 <div class="modal fade allTextModals" id="textSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
@@ -422,7 +455,7 @@
    <div class="modal-body">
      <div class="container-fluid text-center">
      <div class="row tabs">
-       <div id="colorShapes" class="collapse">
+       <div id="colorShapes" style="display:none;">
 
 
        <!-- Startcolors -->
@@ -546,7 +579,7 @@
        <!-- Endcolors -->
 
        </div>
-       <div class="col-lg-2 col-sm-offset-1 col-xs-offset-1 col-md-2 col-sm-2 col-xs-2 pointer" data-toggle="collapse" data-target="#colorShapes">
+       <div class="col-lg-2 col-sm-offset-1 col-xs-offset-1 col-md-2 col-sm-2 col-xs-2 pointer" id="shapesSettingModalColors">
          <i class="fa fa-tint fa-2x" aria-hidden="true"></i>
 
        </div>
@@ -579,7 +612,7 @@
  <!-- End shapesSettingModal -->
 
 <!-- Start imageSettingModal -->
-<div class="modal fade allShapeTextModals" id="imageSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div class="modal fade allImageTextModals" id="imageSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">

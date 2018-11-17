@@ -1,7 +1,7 @@
 
 <?php
 require_once dirname(__DIR__).'/includes/mobile-class/class.productDesignUpload.php';
-
+ini_set('display_errors', 1);
 //====================== HANDLE FILE UPLOAD BY USER ==========================//
 if(isset($_POST['upload'])) {
   try {
@@ -72,6 +72,7 @@ if(isset($_POST['save_json'])) {
     $uploadImage = new productDesignUpload();
     $return = $uploadImage->save_user_customization_json_file($_POST);
     unset($uploadImage);
+
     if(!empty($return['error'])) {
       echo json_encode(array('error' => $return['error']));
     } else {

@@ -4,6 +4,7 @@ var G_EDITOR = (function ($, g_editor) {
 
 
 
+
 			if (Modernizr.mq('(min-width: 340px)')) {
 				if(Modernizr.mq('(min-height:750px)')){
 					$('#navbarCss').css('margin-bottom','25%');
@@ -13,6 +14,29 @@ var G_EDITOR = (function ($, g_editor) {
 				}
 			}
 
+	if (Modernizr.mq('(max-width: 500px)')) {
+		$('#shapesSettingModalColors').click(function(){
+			$('#colorShapes').toggle();
+			if($('#colorShapes').is(":visible")){
+				$('.allShapeTextModals').css('margin-top','135%')
+				$('.well').css('margin-bottom','12px');
+			}else{
+				$('.allShapeTextModals').css('margin-top','150%')
+					$('.well').css('margin-bottom','0px');
+			}
+		});
+		}else{
+			$('#shapesSettingModalColors').click(function(){
+	 			$('#colorShapes').toggle();
+	 			if($('#colorShapes').is(":visible")){
+	 				$('.allShapeTextModals').css('margin-top','112%')
+	 				$('.well').css('margin-bottom','12px');
+	 			}else{
+	 				$('.allShapeTextModals').css('margin-top','120%')
+	 					$('.well').css('margin-bottom','0px');
+	 			}
+	 		});
+		}
 
 			$(document).on("click","#imagesModalFirstlook",function(){
 				$('#firstlook').hide();
@@ -21,6 +45,16 @@ var G_EDITOR = (function ($, g_editor) {
       $(document).on("click","#imagesrealdiv",function(){
 				$('#firstlook').show();
 				$('#imagesModal').modal("hide");
+			});
+
+			$(document).on("click","#buynowdiv",function(){
+				$('#firstlook').show();
+				$('#buyNowModal').modal("hide");
+			});
+
+			$(document).on("click","#canceldivbuy",function(){
+				$('#firstlook').show();
+				$('#buyNowModal').modal("hide");
 			});
 
 			$(document).on("click","#shapesModalFirstlook",function(){
@@ -50,9 +84,9 @@ var G_EDITOR = (function ($, g_editor) {
 							 $('#containerSame').toggle();
 							$('#fontTextModal').toggle();
 							if($("#containerSame").is(":visible")){
-									$('.allTextModals').css('margin-top','80%');
+									$('.allTextModals').css('margin-top','100%');
 							} else{
-									$('.allTextModals').css('margin-top','70%');
+									$('.allTextModals').css('margin-top','90%');
 							}
 						}
 
@@ -63,7 +97,7 @@ var G_EDITOR = (function ($, g_editor) {
 				if (Modernizr.mq('(max-width: 500px)')) {
 				$('.allTextModals').css('margin-top','125%');
 			}else{
-				$('.allTextModals').css('margin-top','80%');
+				$('.allTextModals').css('margin-top','100%');
 			}
 				$('#containerSame').show();
 				$('#fontTextModal').hide();
@@ -174,12 +208,16 @@ var G_EDITOR = (function ($, g_editor) {
 				var new_text = $('#new_text').val();
 				if((selected_object != null) && (selected_object.type == "text" || selected_object.type == "curved-text")){
 					selected_object.set("text",new_text);
+					// g_editor.canvas.sendToBack(selected_object);
 					g_editor.canvas.renderAll();
+					g_editor.save_canvas();
 				}
 				else if((selected_object != null) && (selected_object.type == "group" )){
 					selected_object.set("originalText",new_text);
  					add_curved_text(selected_object.get("originalText"),selected_object.get("top"),selected_object.get("left"));
+						// g_editor.canvas.sendToBack(selected_object);
 					g_editor.canvas.renderAll();
+					g_editor.save_canvas();
 				}
 				else{
 				add_text(new_text,false,false);
@@ -195,7 +233,10 @@ var G_EDITOR = (function ($, g_editor) {
 
 				g_editor.canvas.add(text);
 				g_editor.canvas.setActiveObject(text);
+
 				g_editor.canvas.renderAll();
+				// g_editor.canvas.sendToBack(text);
+				g_editor.save_canvas();
 
        text.on("selected",function(){
 				 $("#textModal").modal("show");
@@ -309,6 +350,7 @@ $(document).on('change','#angle-control',function(){
 							add_curved_text(text, top, left);
 							//g_editor.save_canvas();
 							g_editor.canvas.renderAll();
+								g_editor.save_canvas();
 							$("#cb-curved").attr('checked', 'checked');
 					}
 			}
@@ -326,6 +368,7 @@ $(document).on('change','#angle-control',function(){
 							add_text(text, top, left);
 							//g_editor.save_canvas();
 							g_editor.canvas.renderAll();
+								g_editor.save_canvas();
 					}
 			}
 	}
@@ -393,7 +436,10 @@ $("#angle-control").change(function () {
 										g_editor.canvas.remove(selected_object);
 										g_editor.canvas.add(text);
 										g_editor.canvas.setActiveObject(text);
+
 										g_editor.canvas.renderAll();
+										// g_editor.canvas.sendToBack(text);
+											g_editor.save_canvas();
 										text.on("selected",function(){
 											$('#textModal').modal('show');
 										});
@@ -477,8 +523,11 @@ $("#angle-control").change(function () {
                                       group.set("fontFamily",fontFamily);
 																			group.set("fill",color);
 																	}
-																	//g_editor.save_canvas();
+
+
 																	g_editor.canvas.renderAll();
+																	// g_editor.canvas.sendToBack(group);
+																		g_editor.save_canvas();
 														// g_editor.canvas.sendBackwards(group);
 																	group.setCoords();
 								}
@@ -509,7 +558,10 @@ $("#angle-control").change(function () {
 
 				g_editor.canvas.add(rect);
 				g_editor.canvas.setActiveObject(rect);
+
 				g_editor.canvas.renderAll();
+					// g_editor.canvas.sendToBack(rect);
+					g_editor.save_canvas();
 
 
 				$("#shapesModal").modal("hide");
@@ -543,7 +595,10 @@ $("#angle-control").change(function () {
 
  g_editor.canvas.add(square);
  g_editor.canvas.setActiveObject(square);
+
  g_editor.canvas.renderAll();
+ 	// g_editor.canvas.sendToBack(square);
+ 	g_editor.save_canvas();
 
 
  $("#shapesModal").modal("hide");
@@ -576,7 +631,10 @@ $("#angle-control").change(function () {
 
  g_editor.canvas.add(rsquare);
  g_editor.canvas.setActiveObject(rsquare);
+
  g_editor.canvas.renderAll();
+ // g_editor.canvas.sendToBack(square);
+ 	g_editor.save_canvas();
 
 
  $("#shapesModal").modal("hide");
@@ -606,8 +664,10 @@ $("#angle-control").change(function () {
 
 	 g_editor.canvas.add(eli);
 	 g_editor.canvas.setActiveObject(eli);
-	 g_editor.canvas.renderAll();
 
+	 g_editor.canvas.renderAll();
+	  	// g_editor.canvas.sendToBack(eli);
+	 g_editor.save_canvas();
 
 	 $("#shapesModal").modal("hide");
 	 $('#firstlook').hide();
@@ -635,7 +695,10 @@ $("#angle-control").change(function () {
 
  g_editor.canvas.add(cir);
  g_editor.canvas.setActiveObject(cir);
+
  g_editor.canvas.renderAll();
+ // g_editor.canvas.sendToBack(cir);
+ 	g_editor.save_canvas();
 
 
  $("#shapesModal").modal("hide");
@@ -664,7 +727,10 @@ $("#angle-control").change(function () {
 
  g_editor.canvas.add(tri);
  g_editor.canvas.setActiveObject(tri);
+
  g_editor.canvas.renderAll();
+ 	// g_editor.canvas.sendToBack(tri);
+ 	g_editor.save_canvas();
 
 
  $("#shapesModal").modal("hide");
@@ -704,7 +770,10 @@ $("#angle-control").change(function () {
 
  		g_editor.canvas.add(heart);
  		g_editor.canvas.setActiveObject(heart);
+
  		g_editor.canvas.renderAll();
+			// g_editor.canvas.sendToBack(heart);
+			g_editor.save_canvas();
 
 
  		$("#shapesModal").modal("hide");
@@ -818,8 +887,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
  g_editor.canvas.add(polyg);
  g_editor.canvas.setActiveObject(polyg);
- g_editor.canvas.renderAll();
 
+ g_editor.canvas.renderAll();
+ // g_editor.canvas.sendToBack(polyg);
+	g_editor.save_canvas();
 
  $("#shapesModal").modal("hide");
  $('#firstlook').hide();
@@ -844,8 +915,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
 	 g_editor.canvas.add(polyg3);
 	 g_editor.canvas.setActiveObject(polyg3);
-	 g_editor.canvas.renderAll();
 
+	 g_editor.canvas.renderAll();
+	 // g_editor.canvas.sendToBack(polyg3);
+	 g_editor.save_canvas();
 
 	 $("#shapesModal").modal("hide");
 	 $('#firstlook').hide();
@@ -871,7 +944,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
 	 g_editor.canvas.add(polyg1);
 	 g_editor.canvas.setActiveObject(polyg1);
+
 	 g_editor.canvas.renderAll();
+	 // g_editor.canvas.sendToBack(polyg1);
+	 	g_editor.save_canvas();
 
 
 	 $("#shapesModal").modal("hide");
@@ -899,7 +975,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
 		 g_editor.canvas.add(polyg4);
 		 g_editor.canvas.setActiveObject(polyg4);
+
 		 g_editor.canvas.renderAll();
+		 // g_editor.canvas.sendToBack(polyg4);
+		 	g_editor.save_canvas();
 
 
 		 $("#shapesModal").modal("hide");
@@ -927,7 +1006,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
 		 g_editor.canvas.add(star);
 		 g_editor.canvas.setActiveObject(star);
+
 		 g_editor.canvas.renderAll();
+		 // g_editor.canvas.sendToBack(star);
+		 	g_editor.save_canvas();
 
 
 		 $("#shapesModal").modal("hide");
@@ -955,7 +1037,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
 			 g_editor.canvas.add(star1);
 			 g_editor.canvas.setActiveObject(star1);
+
 			 g_editor.canvas.renderAll();
+			  	// g_editor.canvas.sendToBack(star1);
+			 	g_editor.save_canvas();
 
 
 			 $("#shapesModal").modal("hide");
@@ -984,7 +1069,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
 				 g_editor.canvas.add(star2);
 				 g_editor.canvas.setActiveObject(star2);
+
 				 g_editor.canvas.renderAll();
+				 // g_editor.canvas.sendToBack(star2);
+				 	g_editor.save_canvas();
 
 
 				 $("#shapesModal").modal("hide");
@@ -1006,6 +1094,7 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
             // vobj.set('fill', '#fff');
             // vobj.set('width', 60);
             g_editor.canvas.renderAll();
+							g_editor.save_canvas();
             vobj.on("selected",function(){
 
 							if(vobj.type=="text" || vobj.type=="group"){
@@ -1035,6 +1124,7 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			$(document).on("click","#deleteShapesObject",function(){
 				g_editor.canvas.remove(g_editor.canvas.getActiveObject());
 				g_editor.canvas.renderAll();
+					g_editor.save_canvas();
 			});
 
     $(document).on("click","#sendBackward",function(){
@@ -1048,6 +1138,7 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
    $(document).on("click","#redShape",function(){
 		 g_editor.canvas.getActiveObject().set("fill","red");
 					 g_editor.canvas.renderAll();
+					 	g_editor.save_canvas();
 	 });
 
     $(document).on("change","input[name=color]",function(){
@@ -1058,12 +1149,14 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			 var value = $('input[name=color]:checked').val();
 			 selected_object.set({fill:value});
 				g_editor.canvas.renderAll();
+					g_editor.save_canvas();
 			 }
 			 else if(selected_object.type=="group"){
 				 var value = $('input[name=color]:checked').val();
 				 selected_object.set("fill",value);
 				 add_curved_text(selected_object.get("originalText"),selected_object.get("top"),selected_object.get("left"));
 				 g_editor.canvas.renderAll();
+				 	g_editor.save_canvas();
 			 }
 
 		});
@@ -1075,6 +1168,7 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			 var value = $('input[name=shapesColor]:checked').val();
 			 selected_object.set({fill:value});
 				g_editor.canvas.renderAll();
+					g_editor.save_canvas();
 			 }
 
 		});
@@ -1087,6 +1181,7 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			var value = $(this).attr("data-id");
 			 selected_object.set("fontFamily",value);
 			 g_editor.canvas.renderAll();
+			 	g_editor.save_canvas();
 			}
 			else if((selected_object != null) && (selected_object.type == "group")){
 				var value = $(this).attr("data-id");
@@ -1094,6 +1189,7 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 						a.set('fontFamily', value);
 
 						g_editor.canvas.renderAll();
+							g_editor.save_canvas();
 
 				});
 				// add_curved_text(selected_object.get("originalText"),selected_object.get("top"),selected_object.get("left"));
@@ -1108,11 +1204,13 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			{
 				selected_object.set("textAlign","left");
 		 g_editor.canvas.renderAll();
+		 	g_editor.save_canvas();
 	 }else if((selected_object!=null)&& (selected_object.type=="group")){
 
 				 selected_object.forEachObject(function (a) {
 						 a.set("textAlign", 'left');
 						 g_editor.canvas.renderAll();
+						 	g_editor.save_canvas();
 				 });
 			 }
 		});
@@ -1123,11 +1221,13 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			{
 				selected_object.set("textAlign","center");
 		 g_editor.canvas.renderAll();
+		 	g_editor.save_canvas();
 		}else if((selected_object!=null)&& (selected_object.type=="group")){
 
  				 selected_object.forEachObject(function (a) {
  						 a.set("textAlign",'center');
  						 g_editor.canvas.renderAll();
+						 	g_editor.save_canvas();
  				 });
  			 }
 		});
@@ -1139,149 +1239,22 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 
      selected_object.set("textAlign","right");
 		 g_editor.canvas.renderAll();
+		 	g_editor.save_canvas();
 		}else if((selected_object!=null)&& (selected_object.type=="group")){
 
  				 selected_object.forEachObject(function (a) {
  						 a.set("textAlign", 'right');
  						 g_editor.canvas.renderAll();
+						 	g_editor.save_canvas();
  				 });
  			 }
 		});
 
-   // Start imgLoader
-		// $(document).on("change","#imgLoader",function(e){
-		// 	var reader = new FileReader();
-		// 	reader.onload = function (event) {
-		// 			var imgObj = new Image();
-		// 			imgObj.src = event.target.result;
-		// 			imgObj.onload = function () {
-		// 					// start fabricJS stuff
-		//
-		// 					var image = new fabric.Image(imgObj);
-		// 					image.set({
-		// 							left: 134,
-		// 							top: 120,
-		// 							angle: 0,
-		// 							padding: 10,
-		// 							cornersize: 10
-		// 					});
-		// 					// image.filters.push(new fabric.Image.filters.Invert());
-		// 					// image.applyFilters();
-		//
-		// 					image.scaleToWidth(150);
-    //           image.scaleToHeight(150);
-		//
-		// 					g_editor.canvas.add(image);
-		// 					g_editor.canvas.setActiveObject(image);
-		// 					$("#imagesModal").modal("hide");
-		//
-		// 					// end fabricJS stuff
-		//
-		// 					image.on("selected",function(){
-		// 						$("#imagesModal").modal("show");
-		// 					});
-		// 			}
-		//
-		// 	}
-		// 	reader.readAsDataURL(e.target.files[0]);
-		// });
-
-// End imgLoader
-
-$(document).on("change","#grayscale",function(){
-
-		 var selected_object = g_editor.canvas.getActiveObject();
-		 if ((selected_object != null))
-		 {
-
-	 if($('#grayscale:checked')){
-		 selected_object.filters.push(new fabric.Image.filters.Grayscale());
-	 }
-
-	 selected_object.applyFilters();
-
-		g_editor.canvas.renderAll();
-	 }
-
-});
-
-$(document).on("change","#sepia",function(){
-
-		 var selected_object = g_editor.canvas.getActiveObject();
-		 if ((selected_object != null))
-		 {
-
-	 if($('#sepia:checked')){
-		 selected_object.filters.push(new fabric.Image.filters.Sepia());
-	 }
-
-	 selected_object.applyFilters();
-
-		g_editor.canvas.renderAll();
-	 }
-
-});
-
-$(document).on("change","#invert",function(){
-
-		 var selected_object = g_editor.canvas.getActiveObject();
-		 if ((selected_object != null))
-		 {
-	 if($('#invert:checked')){
-		 selected_object.filters.push(new fabric.Image.filters.Invert());
-	 }
-
-	 selected_object.applyFilters();
-
-		g_editor.canvas.renderAll();
-	 }
-
-});
-
-$(document).on("change","#convolute",function(){
-
-		 var selected_object = g_editor.canvas.getActiveObject();
-		 if ((selected_object != null))
-		 {
-	 if($('#convolute:checked')){
-		 selected_object.filters.push(new fabric.Image.filters.Convolute({
-  matrix: [ 0, -1,  0,
-           -1,  5, -1,
-            0, -1,  0 ]
-}));
-	 }
-
-	 selected_object.applyFilters();
-
-		g_editor.canvas.renderAll();
-	 }
-
-});
 
 
-
-$(document).on("click","#blur",function(){
-
-		 var selected_object = g_editor.canvas.getActiveObject();
-		 if ((selected_object != null))
-		 {
-	 if($('#blur:checked')){
-		 selected_object.filters.push(new fabric.Image.filters.Blur({
-  blur: 0.5
-}));
-	 }
-
-	 selected_object.applyFilters();
-
-		g_editor.canvas.renderAll();
-
-	 }
-
-});
-
-			g_editor.canvas.on('object:selected', function(o){
+			g_editor.canvas.on('object:moving', function(o){
 			var activeObj = o.target;
-
+      g_editor.canvas.sendToBack(activeObj);
 			activeObj.set({'borderColor':'green','cornerColor':'green'});
 
 

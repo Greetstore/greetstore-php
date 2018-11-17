@@ -49,7 +49,7 @@ var G_EDITOR = (function ($, g_editor) {
                       var total = evt.total;
                         var percentComplete = Math.ceil((current/total)* 100) ;
                         // _progress.style.width = Math.ceil((current/total)*100) + '%';
-                        console.log(percentComplete);
+                        // console.log(percentComplete);
                     }
                     // update progressbars classes so it fits your code
                   $(".progress").show();
@@ -68,10 +68,10 @@ var G_EDITOR = (function ($, g_editor) {
               beforeSend: function(){
 
                 $("input[name='inputFile']").prop('disabled', true);
-                console.log("in beforeSend");
+                // console.log("in beforeSend");
               },
               success:function(response){
-                console.log('in success');
+                // console.log('in success');
                 $("input[name='inputFile']").prop('disabled', false);
                 $(".progress").hide();
                 $(".progress-bar").hide();
@@ -102,6 +102,11 @@ var G_EDITOR = (function ($, g_editor) {
 
                                g_editor.canvas.add(image);
                                g_editor.canvas.setActiveObject(image);
+															 $('#firstlook').hide();
+															 $('#imageSettingModal').modal("show");
+															g_editor.canvas.renderAll();
+															g_editor.save_canvas();
+															// g_editor.canvas.sendToBack(image);
                                // $("#imagesModal").modal("hide");
 
                                // end fabricJS stuff
@@ -119,6 +124,14 @@ var G_EDITOR = (function ($, g_editor) {
  });
 }
       }
+
+			g_editor.canvas.on('object:moving', function(o){
+			var activeObj = o.target;
+			g_editor.canvas.sendToBack(activeObj);
+			activeObj.set({'borderColor':'green','cornerColor':'green'});
+
+
+			});
 
 
 		});

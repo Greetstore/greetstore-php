@@ -17,6 +17,17 @@ var G_EDITOR = (function ($, g_editor) {
 	init_empty_canvas_data_array();
 
 	$(document).ready(function(){
+
+		$(window).on('load', function () {
+		     if (Modernizr.mq('(max-width: 1000px)')) {
+						console.log('working');
+					}else{
+						console.log('not working');
+						alert('This site is only for mobile devices');
+						// window.location="http://localhost/greetstore-php/customized.php";
+					}
+		 });
+
 		$('#plusSlide').click(function(){
 
 			if(i<testArray.length-1){
@@ -141,7 +152,7 @@ function init_canvas() {
 														g_editor.serialized_parts[data_id].pop();
 												}
 												g_editor.canvasManipulationsPosition[data_id]++;
-												if(json!="undefined")
+												// if(json!="undefined")
 													// console.log(json);
 												var json = JSON.stringify(g_editor.canvas.toJSON(['text','diameter', 'kerning','lockMovementX','lockMovementY', 'lockRotation', 'lockScalingX', 'lockScalingY', 'lockDeletion', 'originalText', 'radius', 'spacing','hoverCursor','evented','hasControls','hasBorders','selectable','width','height','transparentCorners','fontFamily']));
                         	// console.log(json);
@@ -357,6 +368,7 @@ function init_canvas() {
 											 {
 													 //            resetZoom();
 													 $.blockUI({message: "Loading Image"});
+													 // console.log(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]]);
 													 g_editor.canvas.loadFromJSON(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]], function () {
 															 load_background_overlay_if_needed(part_index);
 															 // rescale_canvas_if_needed();
@@ -573,36 +585,134 @@ function init_canvas() {
 		// 	g_editor.canvas.renderAll();
 		// });
 
+		// GENERATE DESIGN FOR OUTPUT
+		        function generate_final_canvas_part(part_index)
+		        {
+		            generate_canvas_part(part_index, false);
+
+		        }
+
+						// CONVERT CANVAS PARTS TO BLOB
+	function convert_final_canvas_parts_to_blob(frm_data)
+        {
+            $.each(g_editor.final_canvas_parts, function (part_key, part_data) {
+                $.each(part_data, function (data_key, data_value) {
+                    if (data_key == "image")
+                        frm_data.append(part_key + "[" + data_key + "]", data_value);
+                    else if (data_key == "layers")
+                    {
+                        $.each(data_value, function (layer_index, layer_data) {
+                            frm_data.append("layers[" + part_key + "][]", layer_data);
+                        });
+                    }
+                    else
+                        frm_data.append("final_canvas_parts[" + part_key + "][" + data_key + "]", data_value);
+                });
+            });
+            return frm_data;
+        }
+
+		function saveProductToCart() {
+	             // GET THE PRODUCT CODE
+	             // var product_code = $('#image-code').val();
+							 var product_code=1;
+	             // GET CURRENT URL
+	             // var hrefurl=$(location).attr("href");
+	             // var product_name=hrefurl.substr(hrefurl.lastIndexOf('/') + 1);
+	             product_name = "item";
+	             var output_format = "png";
+
+	             loop_through_parts(1000,
+	                     generate_final_canvas_part,
+	                     function () {
+	                         if ($.isEmptyObject(g_editor.final_canvas_parts))
+	                         {
+	                             alert("Error Empty Object");
+															 // console.log("Error empty object");
+	                             $.unblockUI();
+															 window.location="http://localhost/greetstore-php/customized.php";
+
+	                         }
+	                         else
+	                         {
+	                             var json = JSON.stringify(g_editor.canvas.toJSON(['lockMovementX', 'lockMovementY', 'lockRotation', 'lockScalingX', 'lockScalingY', 'lockDeletion', 'originalText', 'radius', 'spacing','hoverCursor','evented','hasControls','hasBorders','selectable','width','height','transparentCorners']));
+	                             var variation_id = product_code;
+	                             var frm_data = new FormData();
+	                             frm_data.append("save", "save");
+	                             frm_data.append("action", "save_user_customization_file");
+	                             frm_data.append("variation_id", variation_id);
+	                             frm_data.append("name", product_name);
+	                             frm_data.append("json_file", json);
+	                             frm_data = convert_final_canvas_parts_to_blob(frm_data);
+	                             $.ajax({
+	                                 type: 'POST',
+	                                 url : 'handlers/handleFileUpload.php',
+	                                 data: frm_data,
+	                                 dataType : "json",
+	                                 processData: false,
+	                                 contentType: false
+	                             }).done(function (data) {
+	                                 // set_clipping_area();
+	                                 $.unblockUI();
+																	 console.log("success");
+	                                 // window.location.href = web_root_path+"cart";
+																	 // window.location.href="cart.php";
+	                                 // if ($("#gs-parts-bar > li").length > 1)
+	                                 // {
+	                                 //     $("#gs-parts-bar > li").first().click();
+	                                 // }
+	                                 // else
+	                                 //     reload_first_part_data();
+	                             });
+	                         }
+	                     }
+	             );
+	             // window.location.href = web_root_path+"cart";
+
+	         }
+
 		$('#buynowBtn').click(function(){
-			var part_index=i;
-			generate_canvas_part(part_index,false);
-			console.log("done");
+      $('#buyNowModal').modal("show");
+			$("#firstlook").hide();
+
+
+
 		});
+
+		$(document).on("click","#addToCart",function(){
+			saveProductToCart();
+			$('#buyNowModal').modal('hide');
+		});
+
+
 
 		// GENERATE CANVAS PART
 	function generate_canvas_part(part_index,preview)
 		{
-
 	var watermark = false;
 	var generate_svg = true;
 	var output_format = "png";
 		g_editor.selected_part = part_index;
 		preview = typeof preview !== 'undefined' ? preview : true;
 		var data_id= testArray[part_index].name;
-		console.log(data_id);
-
 		//     var data_part_img = $("#gs-parts-bar > li:eq(" + part_index + ")").attr("data-url");
 	var data_part_img = "";
 				g_editor.canvas.clear();
+          // console.log(typeof g_editor.serialized_parts[data_id]);
 				if (typeof g_editor.serialized_parts[data_id] == "undefined")
 				{
+					// console.log("if part");
 						g_editor.serialized_parts[data_id] = ["{}"];
+				}else{
+					// console.log("else part");
+
 				}
 
 	           // console.log(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]]);
 				g_editor.canvas.loadFromJSON(g_editor.serialized_parts[data_id][g_editor.canvasManipulationsPosition[data_id]],
 								function () {
 										// applyImageFilters();
+										// console.log('inside');
 										load_background_overlay_if_needed(g_editor.selected_part, function () {
 												var multiplier = 1;
 												if (preview)
@@ -679,6 +789,7 @@ function init_canvas() {
 										if (print_layers)
 														{
 																var objects = canvas_obj.objects;
+																// console.log(objects);
 																$.each(objects, function (key, curr_object) {
 																		g_editor.canvas.clear();
 																		var tmp_canvas_obj = canvas_obj;
@@ -708,6 +819,7 @@ function init_canvas() {
 												load_background_overlay_if_needed(g_editor.selected_part);
 										}, true);
 								});
+
 		}
 
 

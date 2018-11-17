@@ -123,7 +123,7 @@ public function upload_user_image($user_info,$user_file) {
             $order_folder_path = "";
               $order_folder = "delete_Order-".$product_code;
             // Check if the order_folder is present
-            if(empty($order_folder)) {
+            if(empty($order_folder) || !isset($_SESSION['order_folder'])) {
               // $order_folder = "delete_Order-".date("(Y-m-d h:i:s)");
 
                 $order_folder_path = dirname(__DIR__,2).'\uploads\\'.$order_folder;
@@ -141,7 +141,6 @@ public function upload_user_image($user_info,$user_file) {
                  $_SESSION['order_folder'] = $order_folder;
                 $product_path = dirname(__DIR__,2).'\uploads\\'.$order_folder.'\\'.$product_code;
                 if (!is_dir($product_path)) {
-
                     mkdir($product_path);
                 }
                 // CHECK CUSTOMIZATION DIRECTORY
@@ -461,22 +460,23 @@ public function upload_user_image($user_info,$user_file) {
             // CHECK IF ORDER FOLDER SESSION IS THERE OR NOT
             if(!isset($_SESSION['order_folder'])) {
                 // START CREATING DIRECTORIES
-                $order_folder = "delete_Order-".date("(Y-m-d h:i:s)");
-                $order_folder_path = dirname(__DIR__)."/../uploads/".$order_folder;
+                $order_folder = "delete_Order-".$variation_id;
+                $order_folder_path = dirname(__DIR__,2)."\uploads\\".$order_folder;
                 mkdir($order_folder_path);
-                mkdir($order_folder_path."/".$variation_id);
-                mkdir($order_folder_path."/".$variation_id."/customization");
+                mkdir($order_folder_path."\\".$variation_id);
+                mkdir($order_folder_path."\\".$variation_id."\customization");
                 $_SESSION['order_folder'] = $order_folder;
             } else {
                 // CHECK IF FOLDER EXISTS
-                $order_folder_path = dirname(__DIR__)."/../uploads/".$_SESSION['order_folder'];
-                if(!is_dir($order_folder_path."/".$variation_id)) {
-                    mkdir($order_folder_path."/".$variation_id);
-                    mkdir($order_folder_path."/".$variation_id."/customization");
+                $order_folder_path = dirname(__DIR__,2)."\uploads\\".$_SESSION['order_folder'];
+                if(!is_dir($order_folder_path."\\".$variation_id)) {
+                    mkdir($order_folder_path."\\".$variation_id);
+                    mkdir($order_folder_path."\\".$variation_id."\customization");
                 }
             }
 
-            $generation_path = "../../uploads/".$_SESSION['order_folder']."/".$variation_id."/customization";
+            $generation_path = dirname(__DIR__,2)."\uploads\\".$_SESSION['order_folder']."\\".$variation_id."\customization";
+            // echo $generation_path;
             $result = $this->export_data_to_files($generation_path, $final_canvas_parts, $variation_id, $zip_name, false);
 
             // GET THE PRODUCT THUMBNAIL IMAGE
@@ -497,24 +497,24 @@ public function upload_user_image($user_info,$user_file) {
             $product_preview = "";
             $product_thumbnail = "";
             $product_email = "";
-            $thumbnail_path = "uploads/".$_SESSION['order_folder']."/".$variation_id."/customization";
+            $thumbnail_path = dirname(__DIR__,2)."\uploads\\".$_SESSION['order_folder']."\\".$variation_id."\customization";
             foreach ($result as $part_key => $part_file_arr) {
-                $product_thumbnail = $thumbnail_path."/".$part_key."/".$part_file_arr["file"];
+                $product_thumbnail = $thumbnail_path."\\".$part_key."\\".$part_file_arr["file"];
                 // GENERATE JSON FILE
-                $fp = fopen("../../".$thumbnail_path."/".$part_key."/".$part_key.'_info.json', 'w');
+                // $fp = fopen("../../".$thumbnail_path."/".$part_key."/".$part_key.'_info.json', 'w');
+                $fp = fopen($thumbnail_path."\\".$part_key."\\".$part_key.'_info.json', 'w');
                 fwrite($fp, $json_file);
                 fclose($fp);
                 // GENERATE XML FILE
                 $xml_data = json_decode($json_file, true);
                 $xml = $this->array2xml($xml_data, false);
-                $fp = fopen("../../".$thumbnail_path."/".$part_key."/".$part_key.'_info.xml', 'w');
+                $fp = fopen($thumbnail_path."\\".$part_key."\\".$part_key.'_info.xml', 'w');
                 fwrite($fp, $xml);
                 fclose($fp);
-                break;
             }
-            $AddCustomizationToCart = new GreetstoreCart();
-            $customization_result = $AddCustomizationToCart->add_product_details($variation_id,$product_name,$product_content,$product_preview,$product_thumbnail,$product_email);
-            unset($AddCustomizationToCart);
+            // $AddCustomizationToCart = new GreetstoreCart();
+            // $customization_result = $AddCustomizationToCart->add_product_details($variation_id,$product_name,$product_content,$product_preview,$product_thumbnail,$product_email);
+            // unset($AddCustomizationToCart);
             $return['success'] = 1;
             return $return;
 
