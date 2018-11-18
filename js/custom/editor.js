@@ -548,10 +548,11 @@ function init_canvas() {
 												var height = $("#editorContainer").outerHeight()*1.5;
 												// var backgroundImage1 = new fabric.Image.fromURL(bg_not_included_url, function(myImg) {
 												var backgroundImage1 = new fabric.Image.fromURL(bg_not_included_url, function(myImg) {
+
 													if (Modernizr.mq('(max-width: 500px)')) {
-													var img1 = myImg.set({ left: -45, top: -40, selectable: false, hoverCursor: 'default',evented : false,id : "mobile"}).scale(0.5);
+													var img1 = myImg.set({ left: -50, top: -40, selectable: false, hoverCursor: 'default',evented : false,id : "mobile"}).scale(0.5);
 												}else{
-														var img1 = myImg.set({ left: -125, top: -80, selectable: false, hoverCursor: 'default',evented : false,id : "mobile"}).scale(0.7);
+														var img1 = myImg.set({ left: -125, top: -110, selectable: false, hoverCursor: 'default',evented : false,id : "mobile"}).scale(0.7);
 												}
 													g_editor.canvas.add(img1);
 													img1.hasControls = false;

@@ -64,11 +64,10 @@
  <!-- End Carousel -->
 
 <!-- <button type="button" name="button" id="downloadImage" class="btn btn-primary btn-block">Download Image</button> -->
-<br>
 
 <div class="container-fluid text-center" id="firstlook" style="position:fixed;bottom:0px;width:100%;">
 <div class="row tabs">
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" data-toggle="modal" data-target="#textModal">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" id="textModalFirstlook" data-toggle="modal" data-target="#textModal">
     <i class="fa fa-text-width fa-2x" aria-hidden="true"></i>
     <label for="">Add Text</label>
   </div>

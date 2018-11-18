@@ -43,7 +43,7 @@
          </div>
         <div class="row">
          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 canceldiv">
-         <button type="button" class="btn btn-default col-sm-12 col-xs-12 textModalbtn" data-dismiss="modal">Cancel</button>
+         <button type="button" class="btn btn-default col-sm-12 col-xs-12 textModalbtn" id="cancelBtnText">Cancel</button>
          </div>
          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 applydiv">
          <button type="button" class="btn btn-primary add_text col-sm-12 col-xs-12 textModalbtn" id="hell" name="add_text" style="border-radius:0px;">Apply</button>
@@ -63,7 +63,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-        <button type="button" id="shapesCloseModal" class="close">Close &times;</button>
+        <button type="button" id="shapesCloseModal" class="close">Close <span style="font-size:14px">X</span></button>
 
         </div>
         <div class="modal-body">
@@ -186,7 +186,7 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-          <button type="button" class="close" id="imagesrealdiv">Close &times;</button>
+          <button type="button" class="close" id="imagesrealdiv">Close <span style="font-size:14px">X</span></button>
 
           </div>
           <div class="modal-body">
@@ -231,7 +231,7 @@
            </div>
          </div>
 
-          <div class="uploadedFiles row" id="image_preview" style="min-height:50vh;">
+          <div class="uploadedFiles row" id="image_preview" style="min-height:40vh;">
 
 
           </div>
@@ -244,9 +244,9 @@
            </p>
           </div>
           <br>
-          <div class="buttonsImageUpload">
+          <div class="buttonsImageUpload" style="margin:0px;position:fixed;bottom:0px;width:92%;">
             <div class="col-sm-12 col-xs-12" style="padding:0px;">
-            <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;margin-bottom:4%;">
+            <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;margin-bottom:8px;">
                 Camera
                 <input type="file" name="inputCamera" id="inputCamera" accept="image/*;capture=camera">
             </label>
@@ -271,7 +271,7 @@
        <div class="modal-dialog modal-sm">
          <div class="modal-content">
            <div class="modal-header">
-           <button type="button" class="close" id="buynowdiv">Close &times;</button>
+           <button type="button" class="close" id="buynowdiv">Close <span style="font-size:14px">X</span></button>
 
            </div>
            <div class="modal-body">
@@ -300,7 +300,7 @@
     <!-- End buyNowModal -->
 
 <!-- Start textSettingModal -->
-<div class="modal fade allTextModals" id="textSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="textSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">
@@ -310,7 +310,7 @@
 
    <div class="modal-body">
      <div class="containerAll" style="padding:0px;">
-        <div class="row tabs text-center" id="containerSame" style="padding:4% 0%;">
+        <div class="row tabs text-center" id="containerSame" style="padding:5% 0%;">
           <div class="col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="addTextSetting">
             <i class="fa fa-text-height fa-2x" aria-hidden="true"></i>
 
@@ -444,7 +444,7 @@
 <!-- End textSettingModal -->
 
 <!-- Start shapesSettingModal -->
-<div class="modal fade allShapeTextModals" id="shapesSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="shapesSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">
@@ -612,7 +612,7 @@
  <!-- End shapesSettingModal -->
 
 <!-- Start imageSettingModal -->
-<div class="modal fade allImageTextModals" id="imageSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="imageSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">

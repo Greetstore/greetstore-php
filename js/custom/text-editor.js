@@ -2,29 +2,54 @@ var G_EDITOR = (function ($, g_editor) {
 
 		$(document).ready( function() {
 
-
+		if (Modernizr.mq('(max-width: 500px)')) {
+			if (Modernizr.mq('(min-height: 800px)')){
+        $('.allShapeTextModals').css('margin-top','180%');
+				$('.allImageTextModals').css('margin-top','180%');
+				$('.allTextModals').css('margin-top','170%');
+			}
+		}
 
 
 			if (Modernizr.mq('(min-width: 340px)')) {
 				if(Modernizr.mq('(min-height:750px)')){
-					$('#navbarCss').css('margin-bottom','25%');
+					if(Modernizr.mq('(max-height:840px)')){
+						$('#navbarCss').css('margin-bottom','20%');
+					}
+					else{
+						$('#navbarCss').css('margin-bottom','25%');
+					}
 				}
         else{
-					$('#navbarCss').css('margin-bottom','15%');
+					// $('#navbarCss').css('margin-bottom','15%');
 				}
 			}
 
 	if (Modernizr.mq('(max-width: 500px)')) {
-		$('#shapesSettingModalColors').click(function(){
-			$('#colorShapes').toggle();
-			if($('#colorShapes').is(":visible")){
-				$('.allShapeTextModals').css('margin-top','135%')
-				$('.well').css('margin-bottom','12px');
-			}else{
-				$('.allShapeTextModals').css('margin-top','150%')
-					$('.well').css('margin-bottom','0px');
-			}
-		});
+		if(Modernizr.mq('(max-height:800px)')){
+			$('#shapesSettingModalColors').click(function(){
+				$('#colorShapes').toggle();
+				if($('#colorShapes').is(":visible")){
+					$('.allShapeTextModals').css('margin-top','135%')
+					$('.well').css('margin-bottom','12px');
+				}else{
+					$('.allShapeTextModals').css('margin-top','150%')
+						$('.well').css('margin-bottom','0px');
+				}
+			});
+		}else{
+			$('#shapesSettingModalColors').click(function(){
+				$('#colorShapes').toggle();
+				if($('#colorShapes').is(":visible")){
+					$('.allShapeTextModals').css('margin-top','170%')
+					$('.well').css('margin-bottom','12px');
+				}else{
+					$('.allShapeTextModals').css('margin-top','180%')
+						$('.well').css('margin-bottom','0px');
+				}
+			});
+		}
+
 		}else{
 			$('#shapesSettingModalColors').click(function(){
 	 			$('#colorShapes').toggle();
@@ -38,11 +63,18 @@ var G_EDITOR = (function ($, g_editor) {
 	 		});
 		}
 
+		 $(document).on("click","#cancelBtnText",function(){
+			 $("#textModal").modal("hide");
+			 $("#firstlook").show();
+		 });
+
 			$(document).on("click","#imagesModalFirstlook",function(){
 				$('#firstlook').hide();
 			});
 
       $(document).on("click","#imagesrealdiv",function(){
+				g_editor.canvas.discardActiveObject();
+				g_editor.canvas.renderAll();
 				$('#firstlook').show();
 				$('#imagesModal').modal("hide");
 			});
@@ -73,13 +105,16 @@ var G_EDITOR = (function ($, g_editor) {
 
 
 					 if (Modernizr.mq('(max-width: 500px)')) {
-						 $('#containerSame').toggle();
-						$('#fontTextModal').toggle();
-						if($("#containerSame").is(":visible")){
-								$('.allTextModals').css('margin-top','125%');
-						} else{
-								$('.allTextModals').css('margin-top','110%');
-						}
+
+							 $('#containerSame').toggle();
+							$('#fontTextModal').toggle();
+							if($("#containerSame").is(":visible")){
+									$('.allTextModals').css('margin-top','125%');
+							} else{
+									$('.allTextModals').css('margin-top','110%');
+							}
+
+
 						} else {
 							 $('#containerSame').toggle();
 							$('#fontTextModal').toggle();
@@ -95,7 +130,12 @@ var G_EDITOR = (function ($, g_editor) {
 
 			$(document).on("click",".yo",function(){
 				if (Modernizr.mq('(max-width: 500px)')) {
-				$('.allTextModals').css('margin-top','125%');
+				if(Modernizr.mq('(max-height:800px)')){
+					$('.allTextModals').css('margin-top','125%');
+				}else{
+					$('.allTextModals').css('margin-top','170%');
+				}
+
 			}else{
 				$('.allTextModals').css('margin-top','100%');
 			}
@@ -184,12 +224,16 @@ var G_EDITOR = (function ($, g_editor) {
 				});
 
 				$(document).on('click','.realdiv',function() {
+					g_editor.canvas.discardActiveObject();
+					g_editor.canvas.renderAll();
 					$("#textSettingModal").modal("hide");
 					$("#firstlook").show();
 
 				});
 
 				$(document).on('click','.realdivShapes',function() {
+					g_editor.canvas.discardActiveObject();
+					g_editor.canvas.renderAll();
 					$("#shapesSettingModal").modal("hide");
 					$("#firstlook").show();
 
@@ -197,8 +241,11 @@ var G_EDITOR = (function ($, g_editor) {
 
       $(document).on('click','#addTextSetting',function(){
 				$("#textSettingModal").modal("hide");
-				$('#firstlook').show();
 				$("#textModal").modal("show");
+			});
+
+			$(document).on("click","#textModalFirstlook",function(){
+				$('#firstlook').hide();
 			});
 
 			$(document).on('click','.add_text',function() {
@@ -239,6 +286,7 @@ var G_EDITOR = (function ($, g_editor) {
 				g_editor.save_canvas();
 
        text.on("selected",function(){
+				 $('#firstlook').hide();
 				 $("#textModal").modal("show");
 			 });
 
@@ -441,6 +489,7 @@ $("#angle-control").change(function () {
 										// g_editor.canvas.sendToBack(text);
 											g_editor.save_canvas();
 										text.on("selected",function(){
+											$('#firstlook').hide();
 											$('#textModal').modal('show');
 										});
 										var textH=false;
@@ -505,6 +554,7 @@ $("#angle-control").change(function () {
 																	if (custom_top != null)
 																			g_editor.canvas.setActiveObject(group);
 																			group.on("selected",function(){
+																				$('#firstlook').hide();
 																				$("#textModal").modal("show");
 																			});
 																	//g_editor.setCustomProperties(group);
@@ -1122,6 +1172,17 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			});
 
 			$(document).on("click","#deleteShapesObject",function(){
+
+				if(g_editor.canvas.getActiveObject().type=="text" || g_editor.canvas.getActiveObject().type=="group"){
+					$('#textSettingModal').modal('hide');
+					$('#firstlook').show();
+				}else if(g_editor.canvas.getActiveObject().type=="image"){
+					$('#imageSettingModal').modal('hide');
+					$('#firstlook').show();
+				}else{
+					$('#shapesSettingModal').modal('hide');
+					$('#firstlook').show();
+				}
 				g_editor.canvas.remove(g_editor.canvas.getActiveObject());
 				g_editor.canvas.renderAll();
 					g_editor.save_canvas();

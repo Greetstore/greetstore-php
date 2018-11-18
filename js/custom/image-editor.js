@@ -4,6 +4,8 @@ var G_EDITOR = (function ($, g_editor) {
 		$(document).ready( function() {
 
 			$('.realImageShapes').click(function(){
+				g_editor.canvas.discardActiveObject();
+				g_editor.canvas.renderAll();
 				$('#imageSettingModal').modal('hide');
 				$('#firstlook').show();
 			});
