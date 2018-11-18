@@ -24,26 +24,4 @@
 
     </head>
     <body>
-      
-
-      <!--
-
-Amey Sarode
- <div clas="modal" id="textSettingModal">
-  <div class="modal-header">
- </div>
- <div class="modal-body">
-  <div class="content-body">
-   <div class="color-content">
-  </div> <div class="font-content">
- </div> <div class="bend-content">
- </div> <div class="align-content">
- </div>
-</div>
- <div class="options-body">
-  1 2 3 4
-</div>
-</div>
-bottom fix modal
-
-     -->
+    

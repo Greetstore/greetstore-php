@@ -1,8 +1,4 @@
 
-
-
-
-
 <!-- Scripts Js -->
 
 
@@ -192,36 +188,7 @@
           </div>
           <div class="modal-body">
 
-          <!-- <input type="file" id="imgLoader" name="">
-           <br>
-           <div class="filters" >
-                 <label>
-                <input type="checkbox" id="grayscale"/>
-                <div class="checkbox btn">GrayScale</div>
-              </label>
-              <label>
-                <input type="checkbox"  id="sepia"/>
-                <div class="checkbox btn">Sepia</div>
-              </label>
-              <label>
-             <input type="checkbox" id="invert"/>
-             <div class="checkbox btn">Invert</div>
-           </label>
-           <label>
-             <input type="checkbox"  id="convolute"/>
-             <div class="checkbox btn">Convolute</div>
-           </label>
-           <label>
-          <input type="checkbox" id="blur"/>
-          <div class="checkbox btn">Blur</div>
-        </label>
-           </div> -->
-           <!-- <div class="text-center" id="showError">
 
-           </div>
-           <div class="text-center" id="showUploading">
-
-           </div> -->
            <div id="errorImage">
 
            </div>

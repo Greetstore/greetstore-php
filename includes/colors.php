@@ -1,4 +1,4 @@
-<div class="well text-center" style="background:white;">
+<div class="well text-center" style="background:white">
 
   <div class="custom-radios">
   <div>
