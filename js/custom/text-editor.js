@@ -287,6 +287,9 @@ var G_EDITOR = (function ($, g_editor) {
 
        text.on("selected",function(){
 				 $('#firstlook').hide();
+				 $('#textSettingModal').modal('hide');
+				 $('#shapesSettingModal').modal('hide');
+				 $('#imageSettingModal').modal('hide');
 				 $("#textModal").modal("show");
 			 });
 
@@ -490,6 +493,9 @@ $("#angle-control").change(function () {
 											g_editor.save_canvas();
 										text.on("selected",function(){
 											$('#firstlook').hide();
+											$('#textSettingModal').modal('hide');
+											$('#shapesSettingModal').modal('hide');
+											$('#imageSettingModal').modal('hide');
 											$('#textModal').modal('show');
 										});
 										var textH=false;
@@ -555,6 +561,9 @@ $("#angle-control").change(function () {
 																			g_editor.canvas.setActiveObject(group);
 																			group.on("selected",function(){
 																				$('#firstlook').hide();
+																				$('#textSettingModal').modal('hide');
+																				$('#shapesSettingModal').modal('hide');
+																				$('#imageSettingModal').modal('hide');
 																				$("#textModal").modal("show");
 																			});
 																	//g_editor.setCustomProperties(group);
@@ -600,7 +609,8 @@ $("#angle-control").change(function () {
 
 
 					 rect.on("selected",function(){
-
+						 $('#textSettingModal').modal('hide');
+						 $('#imageSettingModal').modal('hide');
 						 $("#firstlook").hide();
 						 $("#shapesSettingModal").modal("show");
 					 });
@@ -638,6 +648,8 @@ $("#angle-control").change(function () {
 
 		square.on("selected",function(){
 
+			$('#textSettingModal').modal('hide');
+			$('#imageSettingModal').modal('hide');
 			$("#firstlook").hide();
 			$("#shapesSettingModal").modal("show");
 		});
@@ -674,6 +686,8 @@ $("#angle-control").change(function () {
 
 		rsquare.on("selected",function(){
 
+			$('#textSettingModal').modal('hide');
+			$('#imageSettingModal').modal('hide');
 			$("#firstlook").hide();
 			$("#shapesSettingModal").modal("show");
 		});
@@ -707,6 +721,8 @@ $("#angle-control").change(function () {
 
 			eli.on("selected",function(){
 
+				$('#textSettingModal').modal('hide');
+				$('#imageSettingModal').modal('hide');
 				$("#firstlook").hide();
 				$("#shapesSettingModal").modal("show");
 			});
@@ -738,6 +754,8 @@ $("#angle-control").change(function () {
 		});
 		cir.on("selected",function(){
 
+			$('#textSettingModal').modal('hide');
+			$('#imageSettingModal').modal('hide');
 			$("#firstlook").hide();
 			$("#shapesSettingModal").modal("show");
 		});
@@ -770,6 +788,8 @@ $("#angle-control").change(function () {
 		});
 		tri.on("selected",function(){
 
+			$('#textSettingModal').modal('hide');
+ 		 $('#imageSettingModal').modal('hide');
  		 $("#firstlook").hide();
  		 $("#shapesSettingModal").modal("show");
  	 });
@@ -813,6 +833,8 @@ $("#angle-control").change(function () {
 
 				heart.on("selected",function(){
 
+					$('#textSettingModal').modal('hide');
+ 				 $('#imageSettingModal').modal('hide');
  				 $("#firstlook").hide();
  				 $("#shapesSettingModal").modal("show");
  			 });
@@ -930,6 +952,8 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 		});
 		polyg.on("selected",function(){
 
+			$('#textSettingModal').modal('hide');
+ 		 $('#imageSettingModal').modal('hide');
  		 $("#firstlook").hide();
  		 $("#shapesSettingModal").modal("show");
  	 });
@@ -958,8 +982,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			});
 			polyg3.on("selected",function(){
 
-			 $("#firstlook").hide();
-			 $("#shapesSettingModal").modal("show");
+				$('#textSettingModal').modal('hide');
+				$('#imageSettingModal').modal('hide');
+				$("#firstlook").hide();
+				$("#shapesSettingModal").modal("show");
 		 });
 
 
@@ -986,6 +1012,8 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 			});
 			polyg1.on("selected",function(){
 
+				$('#textSettingModal').modal('hide');
+				$('#imageSettingModal').modal('hide');
 				$("#firstlook").hide();
 				$("#shapesSettingModal").modal("show");
 			});
@@ -1017,6 +1045,8 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 				});
 				polyg4.on("selected",function(){
 
+					$('#textSettingModal').modal('hide');
+					$('#imageSettingModal').modal('hide');
 					$("#firstlook").hide();
 					$("#shapesSettingModal").modal("show");
 				});
@@ -1048,6 +1078,8 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 				});
 				star.on("selected",function(){
 
+					$('#textSettingModal').modal('hide');
+					$('#imageSettingModal').modal('hide');
 					$("#firstlook").hide();
 					$("#shapesSettingModal").modal("show");
 				});
@@ -1079,6 +1111,8 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 					});
 					star1.on("selected",function(){
 
+						$('#textSettingModal').modal('hide');
+						$('#imageSettingModal').modal('hide');
 						$("#firstlook").hide();
 						$("#shapesSettingModal").modal("show");
 					});
@@ -1111,8 +1145,10 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
 						});
 						star2.on("selected",function(){
 
-							$("#firstlook").hide();
-							$("#shapesSettingModal").modal("show");
+							$('#textSettingModal').modal('hide');
+ 						 $('#imageSettingModal').modal('hide');
+ 						 $("#firstlook").hide();
+ 						 $("#shapesSettingModal").modal("show");
 						});
 
 
@@ -1148,15 +1184,21 @@ var shape = new Array(trapezoid,emerald,star4,star5,polygon3,polygon4,star8,star
             vobj.on("selected",function(){
 
 							if(vobj.type=="text" || vobj.type=="group"){
+								  $('#imageSettingModal').modal("hide");
+									$('#shapesSettingModal').modal("hide");
 									$('#textModal').modal('show');
 							}
               else if(vobj.type=="image"){
-								$('#imageSettingModal').modal('show');
 								$('#firstlook').hide();
+								$('#textSettingModal').modal("hide");
+								$('#shapesSettingModal').modal("hide");
+								$('#imageSettingModal').modal('show');
 							}
 							else{
+									$('#firstlook').hide();
+								$('#imageSettingModal').modal("hide");
+								$('#textSettingModal').modal("hide");
 								$('#shapesSettingModal').modal('show');
-								$('#firstlook').hide();
 							}
 						});
         } else {

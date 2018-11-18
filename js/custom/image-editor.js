@@ -115,6 +115,8 @@ var G_EDITOR = (function ($, g_editor) {
 
                                image.on("selected",function(){
 																 $('#firstlook').hide();
+																 $('#shapesSettingModal').modal('hide');
+					 											$('#textSettingModal').modal('hide');
                                  $('#imageSettingModal').modal("show");
                                });
                              }

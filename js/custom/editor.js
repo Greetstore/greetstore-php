@@ -18,16 +18,34 @@ var G_EDITOR = (function ($, g_editor) {
 
 	$(document).ready(function(){
 
-		$(window).on('load', function () {
-		     if (Modernizr.mq('(max-width: 1000px)')) {
-						console.log('working');
-					}else{
-						console.log('not working');
-						alert('This site is only for mobile devices');
-						// window.location="http://localhost/greetstore-php/customized.php";
-					}
-		 });
 
+    if (screen.width >= 1000) {
+        $('.customized-container').hide();
+				// alert('This website is only for mobile devices');
+				$.toast({
+			    heading: 'Error',
+			    text: 'This website is only for mobile devices',
+			    showHideTransition: 'fade',
+			    icon: 'error',
+					position:'mid-center'
+			})
+
+	    }else{
+				$.toast({
+					heading: 'Welcome',
+					text: 'Welcome to Greetstore',
+					showHideTransition: 'fade',
+					icon: 'success',
+					position:'mid-center'
+			})
+				$('.customized-container').show();
+
+				console.log('working');
+			}
+
+});
+
+$(document).ready(function(){
 		$('#plusSlide').click(function(){
 
 			if(i<testArray.length-1){
@@ -43,11 +61,18 @@ var G_EDITOR = (function ($, g_editor) {
 			// init_canvas();
 			// init_empty_canvas_data_array();
 		}
+
+		$('#textSettingModal').modal("hide");
+		$('#shapesSettingModal').modal("hide");
+		$('#imageSettingModal').modal("hide");
+		$('#firstlook').show();
+
 		});
 	});
 
 	$(document).ready(function(){
 		$('#minusSlide').click(function(){
+
 			if(i>0){
 			i--;
 			click_on_part();
@@ -59,6 +84,12 @@ var G_EDITOR = (function ($, g_editor) {
 			// init_canvas();
 			// init_empty_canvas_data_array();
 		}
+
+		$('#textSettingModal').modal("hide");
+		$('#shapesSettingModal').modal("hide");
+		$('#imageSettingModal').modal("hide");
+		$('#firstlook').show();
+
 		});
 	});
 
@@ -376,13 +407,26 @@ function init_canvas() {
 													 },function(o,object){
 														 if((object.type=="text")||(object.type=="group")||(object.type=="curved-text")){
 															 object.on("selected",function(){
+																 $('#firstlook').hide();
+																 $('#textSettingModal').modal('hide');
+																 $('#shapesSettingModal').modal("hide");
+																 $('#imageSettingModal').modal("hide");
 																 $('#textModal').modal("show");
 															 });
 														 }
 														 else if((object.type=="rect")||(object.type=="ellipse")||(object.type=="circle")||(object.type=="triangle")||(object.type=="path")||(object.type=="polygon")){
 															 object.on("selected",function(){
 																 $('#firstlook').hide();
+																 $('#textSettingModal').modal("hide");
+																$('#imageSettingModal').modal("hide");
 																 $('#shapesSettingModal').modal("show");
+															 });
+														 }else{
+															 object.on("selected",function(){
+																 $('#firstlook').hide();
+																 $('#textSettingModal').modal("hide");
+																$('#shapesSettingModal').modal("hide");
+																 $('#imageSettingModal').modal("show");
 															 });
 														 }
 													 });

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/bootstrap-3.3.7.min.css">
         <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/customize.css">
         <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/toast.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
@@ -23,6 +24,7 @@
 
     </head>
     <body>
+      
 
       <!--
 

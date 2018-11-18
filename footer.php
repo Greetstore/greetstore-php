@@ -13,6 +13,7 @@
 <script src="<?php echo SITE_BASE_URL; ?>js/fabric-extension.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/FileSaver.min.js"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/canvas-toBlob.js"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/toast.min.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/jquery.lazyload.min.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/modernizr.min.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/jquery.blockUI.min.js" charset="utf-8"></script>
@@ -300,7 +301,8 @@
     <!-- End buyNowModal -->
 
 <!-- Start textSettingModal -->
-<div class="modal fade" id="textSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div id="trytext">
+<div class="modal fade" id="textSettingModal" role="dialog" data-backdrop="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">
@@ -441,10 +443,12 @@
      </div>
    </div>
  </div>
+ </div>
 <!-- End textSettingModal -->
 
 <!-- Start shapesSettingModal -->
-<div class="modal fade" id="shapesSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div id="tryshapes">
+<div class="modal fade" id="shapesSettingModal" role="dialog" data-backdrop="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">
@@ -609,10 +613,12 @@
      </div>
    </div>
  </div>
+</div>
  <!-- End shapesSettingModal -->
 
 <!-- Start imageSettingModal -->
-<div class="modal fade" id="imageSettingModal" role="dialog" data-backdrop="static" data-keyboard="false">
+<div id="tryimages">
+<div class="modal fade" id="imageSettingModal" role="dialog" data-backdrop="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
    <div class="modal-header">
@@ -650,6 +656,8 @@
      </div>
    </div>
  </div>
+
+</div>
 <!-- End imageSettingModal -->
 
 <script type="text/javascript">
