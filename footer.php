@@ -237,10 +237,10 @@
            <hr>
            <div class="row">
              <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-               <a class="btn btn-success btn-block" id="addToCart">Yes,I m done</a>
+               <a class="btn btn-success btn-block buynowButton" id="addToCart">Yes,I m done</a>
              </div>
              <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-               <a class="btn btn-danger btn-block" id="canceldivbuy">No,Wait</a>
+               <a class="btn btn-danger btn-block buynowButton" id="canceldivbuy">No,Wait</a>
              </div>
            </div>
           </div>
