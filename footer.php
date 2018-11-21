@@ -1,10 +1,7 @@
-
-<!-- Scripts Js -->
-
+<!-- Scripts js -->
 
 <script src="<?php echo SITE_BASE_URL; ?>js/jquery-3.2.1.min.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/bootstrap-3.3.7.min.js" charset="utf-8"></script>
-<!-- <script src="js/fabric.min.js" charset="utf-8"></script> -->
 <script src="<?php echo SITE_BASE_URL; ?>js/fabric.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/fabric-extension.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/FileSaver.min.js"></script>
@@ -15,20 +12,13 @@
 <script src="<?php echo SITE_BASE_URL; ?>js/jquery.blockUI.min.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/editor.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/text-editor.js" charset="utf-8"></script>
+<script src="<?php echo SITE_BASE_URL; ?>js/custom/shape-editor.js" charset="utf-8"></script>
 <script src="<?php echo SITE_BASE_URL; ?>js/custom/image-editor.js" charset="utf-8"></script>
-<script src="<?php echo SITE_BASE_URL; ?>js/custom/buynow.js" charset="utf-8"></script>
-
-
-
-
-
-
-
 
 
 <!-- Modals -->
 
-<!-- Start textModal -->
+<!-- Text modal -->
 <div class="modal fade" id="textModal" role="dialog" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
@@ -43,7 +33,7 @@
          <button type="button" class="btn btn-default col-sm-12 col-xs-12 textModalbtn" id="cancelBtnText">Cancel</button>
          </div>
          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 applydiv">
-         <button type="button" class="btn btn-primary add_text col-sm-12 col-xs-12 textModalbtn" id="hell" name="add_text" style="border-radius:0px;">Apply</button>
+         <button type="button" class="btn btn-primary add_text col-sm-12 col-xs-12 textModalbtn" id="hell" name="add_text">Apply</button>
          </div>
        </div>
       </form>
@@ -52,15 +42,14 @@
      </div>
    </div>
  </div>
-<!-- End textModal -->
 
 
-<!-- shapesModal -->
+<!-- Shapes modal -->
  <div class="modal fade" id="shapesModal" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-        <button type="button" id="shapesCloseModal" class="close">Close <span style="font-size:14px">X</span></button>
+        <button type="button" id="shapesCloseModal" class="close">Close <span class="shapesSpan">X</span></button>
 
         </div>
         <div class="modal-body">
@@ -176,14 +165,13 @@
       </div>
     </div>
   </div>
-  <!-- End shapesModal -->
 
-  <!-- imagesModal -->
+  <!-- Images modal -->
    <div class="modal fade" id="imagesModal" role="dialog" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-          <button type="button" class="close" id="imagesrealdiv">Close <span style="font-size:14px">X</span></button>
+          <button type="button" class="close" id="imagesrealdiv">Close <span class="shapesSpan">X</span></button>
 
           </div>
           <div class="modal-body">
@@ -193,18 +181,18 @@
 
            </div>
 
-           <div class="progress" style="display:none;">
+           <div class="progress">
            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
 
            </div>
          </div>
 
-          <div class="uploadedFiles row" id="image_preview" style="min-height:40vh;">
+          <div class="uploadedFiles row" id="image_preview">
 
 
           </div>
           <div class="contentImagesModal">
-           <p style="color:grey;font-weight:bold;">I confirm this content does not infringe any laws
+           <p>I confirm this content does not infringe any laws
              or third-party rights like copyright,trademark,or personality
              rights.I understand Greetstore follows rules and closes the
              accounts of repeat infringers.I have reviewed Greetstore's
@@ -212,16 +200,16 @@
            </p>
           </div>
           <br>
-          <div class="buttonsImageUpload" style="margin:0px;position:fixed;bottom:0px;width:92%;">
-            <div class="col-sm-12 col-xs-12" style="padding:0px;">
-            <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;margin-bottom:8px;">
+          <div class="buttonsImageUpload">
+            <div class="col-sm-12 col-xs-12">
+            <label class="btn-bs-file btn btn-lg btn-primary btn-block">
                 Camera
                 <input type="file" name="inputCamera" id="inputCamera" accept="image/*;capture=camera">
             </label>
           </div>
 
-           <div class="col-sm-12 col-xs-12" style="padding:0px;">
-           <label class="btn-bs-file btn btn-lg btn-primary btn-block" style="border-radius:0px;">
+           <div class="col-sm-12 col-xs-12">
+           <label class="btn-bs-file btn btn-lg btn-primary btn-block">
                Browse
                <input type="file" name='inputFile' id='inputFile'/>
            </label>
@@ -232,19 +220,18 @@
         </div>
       </div>
     </div>
-    <!-- End imagesModal -->
 
-    <!-- Start buyNowModal -->
+    <!-- Buynow modal -->
     <div class="modal fade" id="buyNowModal" role="dialog" data-backdrop="static" data-keyboard="false">
        <div class="modal-dialog modal-sm">
          <div class="modal-content">
            <div class="modal-header">
-           <button type="button" class="close" id="buynowdiv">Close <span style="font-size:14px">X</span></button>
+           <button type="button" class="close" id="buynowdiv">Close <span class="shapesSpan">X</span></button>
 
            </div>
            <div class="modal-body">
 
-          <div class="cartContainer" style="margin-top:40%;">
+          <div class="cartContainer">
            <h4 class="text-center">Are you sure you want to proceed ? </h4>
            <a>Note : You cannot edit the design later.</a>
            <hr>
@@ -265,9 +252,8 @@
          </div>
        </div>
      </div>
-    <!-- End buyNowModal -->
 
-<!-- Start textSettingModal -->
+<!-- Text setting modal -->
 <div id="trytext">
 <div class="modal fade" id="textSettingModal" role="dialog" data-backdrop="false">
    <div class="modal-dialog modal-sm">
@@ -278,36 +264,44 @@
    </div>
 
    <div class="modal-body">
-     <div class="containerAll" style="padding:0px;">
-        <div class="row tabs text-center" id="containerSame" style="padding:5% 0%;">
+     <div class="containerAll">
+
+       <!-- edit -->
+        <div class="row tabs text-center" id="containerSame">
           <div class="col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="addTextSetting">
             <i class="fa fa-text-height fa-2x" aria-hidden="true"></i>
 
           </div>
+
+          <!-- clone -->
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="cloneShape">
             <i class="fa fa-window-restore fa-2x" aria-hidden="true"></i>
 
           </div>
+
+          <!-- delete -->
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="deleteShapesObject">
            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
 
           </div>
+
+          <!-- send forward -->
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendForward">
             <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
 
           </div>
 
+          <!-- send backward -->
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendBackward">
             <i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
 
           </div>
 
         </div>
-        <div id="fontTextModal" class="" style="display:none;">
-          <!-- <div class="modal-header" style="padding:4%">
-          <span id="textsetting">Text Setting</span>
-         <button type="button" class="realdiv" name="button">Close X</button></span>
-          </div> -->
+
+        <!-- font family -->
+        <div id="fontTextModal" class="">
+
         <ul class="list-unstyled text-center striped-list" id="fontModalList">
           <li data-id="Alegreya" style="font-family: 'Alegreya', serif;">Algreya</li>
           <li data-id="Alfa Slab One" style="font-family: 'Alfa Slab One', cursive;" >Alfa</li>
@@ -322,11 +316,14 @@
 
         </ul>
         </div>
+
+        <!-- colors -->
         <div id="colorTextModal" class="collapse dropup-content">
          <?php include "includes/colors.php" ?>
         </div>
 
-        <div id="bendTextModal" class="collapse dropup-content" style="background:white;">
+        <!-- bend text -->
+        <div id="bendTextModal" class="collapse dropup-content">
           <div class="benddiv">
           <div class="slidecontainer">
 
@@ -335,6 +332,8 @@
           <input type="checkbox" id="cb-curved" name="" value="" checked>
         </div>
         </div>
+
+        <!-- align text -->
         <div id="alignTextModal" class="collapse dropup-content">
           <div class="row text-center">
             <div class="col-sm-4 col-xs-4 aligntext text-tabs" id="alignTextLeft">
@@ -355,8 +354,9 @@
 
 
 
-     <!-- <div class="container text-center" id="textEdit"> -->
-     <div class="row text-center" style="color:#0483c2;border:1px solid;margin-left:0.1%;margin-right:0.1%;">
+    <!-- collapsible dropup div -->
+    <div id="dropupDiv">
+     <div class="row text-center">
      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs port-item yo" data-toggle="collapse" data-target="#colorTextModal">
        <i class="fa fa-tint fa-2x" aria-hidden="true"></i>
        <br>
@@ -378,42 +378,16 @@
      <label for="">Align Text</label>
      </div>
    </div>
-     <!-- <ul class="nav nav-pills text-center">
-       <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3 active">
-         <a data-toggle="pill" href="#colorModal">
-         <span><i class="fa fa-tint fa-2x" aria-hidden="true"></i></span>
-         <p>Colors</p>
-         </a>
-       </li>
-       <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-         <a data-toggle="pill" href="#fontModal">
-         <span><i class="fa fa-font fa-2x" aria-hidden="true"></i></span>
-         <p>Font-family</p>
-       </a>
-       </li>
-       <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-         <a data-toggle="pill" href="#bendModal">
-        <span><i class="fa fa-undo fa-2x fa-rotate-90" aria-hidden="true"></i></span>
-        <p>Text Bend</p>
-       </a>
-       </li>
-       <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-         <a data-toggle="pill" href="#alignModal">
-         <span><i class="fa fa-align-left fa-2x" aria-hidden="true"></i></span>
-         <p>Align Text</p>
-       </a>
-       </li>
-     </ul> -->
-     <!-- </div> -->
+ </div>
+
    </div>
 
      </div>
    </div>
  </div>
  </div>
-<!-- End textSettingModal -->
 
-<!-- Start shapesSettingModal -->
+<!-- Shapes setting modal -->
 <div id="tryshapes">
 <div class="modal fade" id="shapesSettingModal" role="dialog" data-backdrop="false">
    <div class="modal-dialog modal-sm">
@@ -426,10 +400,10 @@
    <div class="modal-body">
      <div class="container-fluid text-center">
      <div class="row tabs">
-       <div id="colorShapes" style="display:none;">
 
+       <!-- colors -->
+       <div id="colorShapes">
 
-       <!-- Startcolors -->
        <div class="well text-center">
 
          <div class="custom-radios">
@@ -544,29 +518,32 @@
 
        </div>
 
-
-
-
-       <!-- Endcolors -->
-
        </div>
+
        <div class="col-lg-2 col-sm-offset-1 col-xs-offset-1 col-md-2 col-sm-2 col-xs-2 pointer" id="shapesSettingModalColors">
          <i class="fa fa-tint fa-2x" aria-hidden="true"></i>
 
        </div>
+
+       <!-- clone -->
        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="cloneShape">
          <i class="fa fa-window-restore fa-2x" aria-hidden="true"></i>
 
        </div>
+
+       <!-- delete -->
        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="deleteShapesObject">
         <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
 
        </div>
+
+       <!-- send forward -->
        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendForward">
          <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
 
        </div>
 
+      <!-- send backward -->
        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pointer" id="sendBackward">
          <i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
 
@@ -581,9 +558,9 @@
    </div>
  </div>
 </div>
- <!-- End shapesSettingModal -->
 
-<!-- Start imageSettingModal -->
+<!-- Image setting modal -->
+
 <div id="tryimages">
 <div class="modal fade" id="imageSettingModal" role="dialog" data-backdrop="false">
    <div class="modal-dialog modal-sm">
@@ -597,19 +574,25 @@
      <div class="container-fluid text-center">
      <div class="row tabs">
 
+       <!-- clone -->
        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="cloneShape">
          <i class="fa fa-window-restore fa-2x" aria-hidden="true"></i>
 
        </div>
+
+       <!-- delete -->
        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="deleteShapesObject">
         <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
 
        </div>
+
+       <!-- send forward -->
        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="sendForward">
          <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
 
        </div>
 
+       <!-- send backward -->
        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pointer" id="sendBackward">
          <i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
 
@@ -625,12 +608,6 @@
  </div>
 
 </div>
-<!-- End imageSettingModal -->
 
-<script type="text/javascript">
- $('.port-item').click(function(){
-      $('.collapse').collapse('hide');
-    });
-  </script>
 
 </html>

@@ -10,7 +10,7 @@
         <meta name="description" content="<?php //echo $return['description']; ?>"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-        <!--  STYLE SHEETS -->
+        <!--  Style sheets -->
         <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/bootstrap-3.3.7.min.css">
         <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/customize.css">
         <link rel="stylesheet" href="<?php echo SITE_BASE_URL; ?>css/font-awesome.min.css">
@@ -24,4 +24,3 @@
 
     </head>
     <body>
-    

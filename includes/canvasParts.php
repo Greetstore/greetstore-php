@@ -11,7 +11,9 @@ function get_parts() {
     // $part1 = array('name' => "Front",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/customize-images/product/pixel.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
     $part1 = array('name' => "Back",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/product/mobile-cover/Apple-Iphone-8/Apple-Iphone-8.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
     $part2 = array('name' => "Back1",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/product/mobile-cover/Apple-Iphone-8/pixel.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
-    $parts=array($part1,$part2);
+    $part3 = array('name' => "Back2",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/product/mobile-cover/Apple-Iphone-8/Apple-Iphone-8-1.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
+    $part4 = array('name' => "Back3",'icon' => '','bg-not-inc' => SITE_BASE_URL.'images/product/mobile-cover/Apple-Iphone-8/pixel-1.png','bg-inc' => '','ov-img' => '','ov-inc' => '');
+    $parts=array($part1,$part2,$part3,$part4);
     $jsonPhp=json_encode($parts);
     return $jsonPhp;
     $is_first = true;

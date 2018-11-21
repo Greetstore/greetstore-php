@@ -1,18 +1,20 @@
 @media only screen and (min-width:240px) and (max-width:350px) {
 
+/* ==================================== Customized.php ====================================*/
+
+/*------- Carousel --------*/
+
+/* carousel image */
   #myCarousel .carousel-image {
     position: relative;
     left: -8.5%;
   }
 
-  #downloadImage {
-    position: relative;
-    top: -120px;
-  }
-  /* #firstlook{
-    position: relative;
-    top: -120px;
-  } */
+/* ==================================== Footer.php ====================================*/
+
+/*------- Text setting modal --------*/
+
+/* align text */
   #alignTextModal {
     top: 0%;
     padding-bottom: 4%;
@@ -21,6 +23,12 @@
 }
 
 @media only screen and (min-width:345px) and (max-width:365px) {
+
+/* ==================================== Customized.php ====================================*/
+
+  /*------- Carousel --------*/
+
+  /* carousel image */
   #myCarousel .carousel-image {
     position: relative;
     left: -1.5%;
@@ -28,6 +36,12 @@
 }
 
 @media only screen and (min-width:366px) and (max-width:385px) {
+
+  /* ==================================== Customized.php ====================================*/
+
+  /*------- Carousel --------*/
+
+  /* carousel image */
   #myCarousel .carousel-image {
     position: relative;
     left: 1.5%;
@@ -35,6 +49,12 @@
 }
 
 @media only screen and (min-width:400px) and (max-width:500px) {
+
+/* ==================================== Customized.php ====================================*/
+
+  /*------- Carousel --------*/
+
+  /* carousel image */
   #myCarousel .carousel-image {
     position: relative;
     left: 1.5em;
@@ -43,195 +63,147 @@
 
 @media only screen and (max-width: 834px) {
 
-  /*=========== customize ==============*/
+  /* ==================================== Customized.php ====================================*/
 
-  input[type=checkbox] {
-    position: absolute;
-    display: none;
-    visibility: hidden;
+  /*------- Common rule --------*/
+
+  .tabs {
+    color: #4d8cf2;
   }
 
-      /* A Little Non-Selectable Magic */
-  label,
-    div.checkbox {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  .close-customization {
+    margin-top: 15px;
   }
 
-    /* Default, Non Checked State */
+  /*------- Firstlook options --------*/
 
-  div.checkbox {
-    display: inline-block;
-    background: green;
+/* firstlook style */
+  #firstlook{
+    position:fixed;bottom:0px;width:100%;
+  }
+
+  /* buynow button */
+  #firstlook .buynow {
+    background-color: #0483c2;
+    color: white;
+  }
+
+/* firstlook columns */
+  #firstlook .column-tabs {
+    border: 1px solid #337ab7;
+    padding: 2%;
+    cursor: pointer;
+  }
+
+
+  /*------- Carousel --------*/
+
+  /* Carousel controls */
+  .carousel-control.left, .carousel-control.right {
+    background: none !important;
+  }
+
+  /* carousel image */
+  #myCarousel .carousel-image {
+    margin-left: 0%;
+  }
+
+  /* carousel arrows previous and next */
+  a>i {
+    margin-top: 320%;
+    font-weight: bold;
+    color: blue;
+  }
+
+/*------- Navbar --------*/
+
+ /* navbar close button*/
+  button.close-customization {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+  }
+
+  .close-customization {
+    float: right;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
     color: #FFF;
   }
 
-    /* Checkbox Toggled Hack with Checked State as our Background Position */
-
-  input[type=checkbox]:checked ~ div.checkbox {
-    background-position: -14px 0px;
-    background: orange;
-    color: #000;
+  /* navbar logo */
+  .logo {
+    margin-bottom: 5%;
   }
 
-  #shapesModal .shapesImage {
-    padding: 10%;
-    margin-bottom: 8%;
-    border-radius: 0px;
-    text-align: center;
-    cursor: pointer;
-    background-color: #f2f2f2;
+  /* canvas container */
+  #editorContainer {
+    height: 480px;
   }
 
-  #shapesSettingModal {
-    width: 100%;
-  }
 
-  #imageSettingModal .realImageShapes {
-    float: right;
-    background: #445d6c;
-    border: none;
-    color: white;
-  }
+/* ==================================== Footer.php ====================================*/
 
-  #imageSettingModal .modal-dialog {
-    margin: 0px;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-  }
 
-  #imageSettingModal .modal-header {
-    padding: 4px;
-    background: #445d6c;
-  }
+  /*------- Common rule --------*/
 
-  #imageSettingModal #textsetting {
-    color: white;
-    font-weight: bold;
-  }
-
-  #shapesSettingModal .realdivShapes {
-    float: right;
-    background: #445d6c;
-    border: none;
-    color: white;
-  }
-
-  #shapesSettingModal .modal-dialog {
-    margin: 0px;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-  }
-
-  #shapesSettingModal .modal-header {
-    padding: 4px;
-    background: #445d6c;
-  }
-
-  #shapesSettingModal #textsetting {
-    color: white;
-    font-weight: bold;
-  }
-
-  #shapesSettingModal .pointer {
-    cursor: pointer;
-  }
-
-  #textSettingModal {
-    width: 100%;
-  }
-
-  #textSettingModal .realdiv {
-    float: right;
-    background: #445d6c;
-    border: none;
-    color: white;
-  }
-
-  #textSettingModal .modal-dialog {
-    margin: 0px;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-  }
-
-  #textSettingModal .aligntext {
-    color: grey;
-  }
-
-  #textSettingModal .benddiv {
-    padding: 20px;
-  }
-
-  #textSettingModal .fontstext {
-    max-height: 150px;
-    overflow: scroll;
-    font-weight: bold;
-  }
-
-  #textSettingModal .modal-body {
-    padding: 0px;
-    margin-right: 0px;
-  }
-
-  #shapesSettingModal .modal-body {
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  #textSettingModal .modal-header {
-    padding: 4px;
-    background: #445d6c;
-  }
-
-  #textSettingModal #textsetting {
-    color: white;
-    font-weight: bold;
-  }
-
-  #alignTextModal {
-    background: #fff;
-    min-width: 100%;
-  }
-
-  #textSettingModal .dropup-content {
-    min-width: 100%;
-    max-width: 100%;
-    position: absolute;
-    bottom: 70px;
-    z-index: 99;
-  }
-
+/* modal header */
   .modal-header {
     padding: 2%;
     margin-bottom: 2%;
   }
 
-  #colorTextModal {
-    margin-bottom: 2%;
-    right: 0%;
+  /* modal content */
+  .modal-content {
+    border-radius: 0px;
   }
 
-  #fontTextModal {
-    right: 0%;
+    /* modal backdrop */
+  .modal-backdrop {
+    background: none;
   }
 
-  #fontModalList {
-    max-height: 120px;
-    margin-bottom: 2%;
-    overflow: scroll;
+    /* navbar pills */
+  .nav-pills>li {
+    padding: 0px;
+    margin-right: -2px;
+    border: 1px solid #6298ef;
+    cursor: pointer;
+  }
+
+  .nav-pills>li>a {
+    border-radius: 0px;
+  }
+
+    /* navbar li */
+  .nav>li>a {
+    padding: 4%;
+  }
+
+    /* active class */
+  .activemanual {
+    background-color: #0483c2;
+    color: white;
+  }
+
+  .activemanualtext>i {
+    color: #0483c2;
+  }
+
+  .activemanualtext>p {
+    color: #0483c2;
+  }
+
+/* close button on modals */
+  .close {
     font-weight: bold;
+    font-size: 16px;
   }
 
+/* fonts droupup */
   .dropup-font {
     position: absolute;
     bottom: 74px;
@@ -240,6 +212,7 @@
     background: white;
   }
 
+/* images browse button */
   .btn-bs-file {
     position: relative;
   }
@@ -255,36 +228,7 @@
     cursor: inherit;
   }
 
-  #textSettingModal ul.striped-list > li:nth-of-type(odd) {
-    background-color: #f2f2f2;
-  }
-
-  #textSettingModal ul.striped-list > li {
-    border-bottom: 1px solid rgb(221,221,221);
-    padding: 2%;
-  }
-
-  #textSettingModal ul.striped-list > li:last-child {
-    border-bottom: none;
-  }
-
-  #firstlook .buynow {
-    background-color: #0483c2;
-    color: white;
-  }
-
-  #textModal .canceldiv {
-    padding-right: 0px;
-  }
-
-  #textModal .applydiv {
-    padding-left: 0px;
-  }
-
-  #textModal .textModalbtn {
-    border-radius: 0px;
-  }
-
+/* well class */
   .well {
     background: white;
     margin-bottom: 0px;
@@ -294,10 +238,12 @@
     white-space: nowrap;
   }
 
+/* range slider container */
   .slidecontainer {
     width: 100%;
   }
 
+/* range slider */
   .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -310,10 +256,12 @@
     transition: opacity .2s;
   }
 
+/* slider hover */
   .slider:hover {
     opacity: 1;
   }
 
+/* range slider button other than mozilla */
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -324,6 +272,7 @@
     cursor: pointer;
   }
 
+/* range slider button for mozilla*/
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -335,7 +284,7 @@
 
 
 
-    /* Liquid radio Button */
+  /* liquid radio buttons */
   .custom-radios div {
     display: inline-block;
   }
@@ -482,145 +431,74 @@
     margin-bottom: 60%;
   }
 
-    /* End liquid radio button */
+  /* close cross font size */
+    .shapesSpan{
+      font-size:14px;
+    }
 
-
-  .logo {
-    margin-bottom: 5%;
+/* progress bar */
+  .progress{
+    display:none;
   }
 
-  .close-customization {
-    margin-top: 15px;
+/* images append container */
+  #image_preview{
+    min-height:40vh;
   }
 
-  /* Carousel controls */
-  .carousel-control.left, .carousel-control.right {
-    background: none !important;
+/* images modal text */
+  .contentImagesModal>p{
+    color:grey;font-weight:bold;
   }
 
-  #myCarousel .carousel-image {
-    margin-left: 0%;
-  }
-  /* Carousel arrows previous and next */
-  a>i {
-    margin-top: 320%;
-    font-weight: bold;
-    color: blue;
+/* images modal buttons  */
+  .buttonsImageUpload{
+    margin:0px;position:fixed;bottom:0px;width:92%;
   }
 
-  button.close-customization {
-    -webkit-appearance: none;
-    padding: 0;
-    cursor: pointer;
-    background: 0 0;
-    border: 0;
-  }
-
-  .close-customization {
-    float: right;
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 1;
-    color: #FFF;
-  }
-
-  .tabs {
-    color: #4d8cf2;
-  }
-
-  #firstlook .column-tabs {
-    border: 1px solid #337ab7;
-    padding: 2%;
-    cursor: pointer;
-  }
-
-  #textModal .textButton {
-    display: inline-block;
-    border-radius: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 10px;
-  }
-
-  #textModal .self-modal {
-    margin: 0px;
+  /* images modal buttons div */
+  .buttonsImageUpload>div{
     padding: 0px;
   }
 
-  #fontModal ul>li {
-    cursor: pointer;
+/* images modal buttons label */
+  .btn-bs-file{
+    border-radius:0px;margin-bottom:8px;
   }
 
-/* Common Rule  */
+/* buynow modal container */
+  .cartContainer{
+    margin-top:40%;
+  }
 
-  .modal-content {
+/* container for modifying text */
+  .containerAll{
+    padding:0px;
+  }
+
+/*------- Text modal--------*/
+
+/* cancel button */
+  #textModal .canceldiv {
+    padding-right: 0px;
+  }
+
+/* apply button */
+  #textModal .applydiv {
+    padding-left: 0px;
+  }
+
+/* both apply and cancel btn */
+  #textModal .textModalbtn {
     border-radius: 0px;
   }
 
-  .modal-backdrop {
-    background: none;
+/* apply button border radius */
+  #textModal #hell{
+    border-radius:0px;
   }
 
-  .nav-pills>li {
-    padding: 0px;
-    margin-right: -2px;
-    border: 1px solid #6298ef;
-    cursor: pointer;
-  }
-
-  .nav-pills>li>a {
-    border-radius: 0px;
-  }
-
-  .nav>li>a {
-    padding: 4%;
-  }
-
-  .activemanual {
-    background-color: #0483c2;
-    color: white;
-  }
-
-  .activemanualtext>i {
-    color: #0483c2;
-  }
-
-  .activemanualtext>p {
-    color: #0483c2;
-  }
-
-  .close {
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  #tryshapes .modal {
-    bottom: initial!important;
-  }
-
-  #trytext .modal {
-    bottom: initial!important;
-  }
-
-  #tryimages .modal {
-    bottom: initial!important;
-  }
-
-  /* End Common Rule */
-
-  #textSettingModal .modal-content {
-    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    box-shadow: 0 5px 15px rgba(0,0,0,0);
-  }
-
-  #textSettingModal .port-item {
-    font-size: 12px;
-    padding: 2%;
-    border: 1px solid;
-  }
-
+/* textarea */
   #textModal textarea {
     height: 120px;
     width: 100%;
@@ -630,21 +508,179 @@
     font-weight: bold;
   }
 
-  #textModal #outline-btn {
-    border: 2px solid #809fff;
-    background: white;
-    color: grey;
-    width: 119%;
-    font-weight: bold;
+
+  /* buttons */
+  #textModal .textButton {
+    display: inline-block;
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 10px;
   }
 
-  #textModal #blue-btn {
-    background-color: #809fff;
+  /* modal body */
+  #textModal .self-modal {
+    margin: 0px;
+    padding: 0px;
+  }
+
+/*------- Text setting modal--------*/
+
+/* text setting modal width*/
+  #textSettingModal {
+    width: 100%;
+  }
+
+/* close button */
+  #textSettingModal .realdiv {
+    float: right;
+    background: #445d6c;
+    border: none;
     color: white;
-    padding: 11px;
+  }
+
+/* modal dialog */
+  #textSettingModal .modal-dialog {
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+  }
+
+/* color */
+  #textSettingModal .aligntext {
+    color: grey;
+  }
+
+/* bend text */
+  #textSettingModal .benddiv {
+    padding: 20px;
+    background: white;
+  }
+
+/* collapsible dropup div */
+  #textSettingModal #dropupDiv{
+    color:#0483c2;border:1px solid;margin-left:0.1%;margin-right:0.1%;
+  }
+
+/* fonts text */
+  #textSettingModal .fontstext {
+    max-height: 150px;
+    overflow: scroll;
     font-weight: bold;
   }
 
+/* modal body */
+  #textSettingModal .modal-body {
+    padding: 0px;
+    margin-right: 0px;
+  }
+
+/* modal header */
+  #textSettingModal .modal-header {
+    padding: 4px;
+    background: #445d6c;
+  }
+
+/* text color and font */
+  #textSettingModal #textsetting {
+    color: white;
+    font-weight: bold;
+  }
+
+/* containerSame for modifying text */
+  #textSettingModal #containerSame{
+    padding:5% 0%;
+  }
+
+/* align text */
+  #alignTextModal {
+    background: #fff;
+    min-width: 100%;
+  }
+
+/* dropup content */
+  #textSettingModal .dropup-content {
+    min-width: 100%;
+    max-width: 100%;
+    position: absolute;
+    bottom: 70px;
+    z-index: 99;
+  }
+
+ /* fonts li odd number */
+  #textSettingModal ul.striped-list > li:nth-of-type(odd) {
+    background-color: #f2f2f2;
+  }
+
+ /* all li of fonts */
+  #textSettingModal ul.striped-list > li {
+    border-bottom: 1px solid rgb(221,221,221);
+    padding: 2%;
+  }
+
+ /* last child of ul fonts*/
+  #textSettingModal ul.striped-list > li:last-child {
+    border-bottom: none;
+  }
+
+  /* modal content */
+  #textSettingModal .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0);
+  }
+
+/* textSettingModal all options */
+  #textSettingModal .port-item {
+    font-size: 12px;
+    padding: 2%;
+    border: 1px solid;
+  }
+
+/* colors modal */
+  #colorTextModal {
+    margin-bottom: 2%;
+    right: 0%;
+  }
+
+/* fonts padding */
+  #fontTextModal {
+    right: 0%;
+    display:none;
+  }
+
+/* fonts modal */
+  #fontModalList {
+    max-height: 120px;
+    margin-bottom: 2%;
+    overflow: scroll;
+    font-weight: bold;
+  }
+
+/* fonts all li */
+  #fontModal ul>li {
+    cursor: pointer;
+  }
+
+/* selecting object outside modal enabled */
+  #trytext .modal {
+    bottom: initial!important;
+  }
+
+    /* Hide checkbox */
+  input[type=checkbox] {
+    position: absolute;
+    display: none;
+    visibility: hidden;
+  }
+
+
+
+  /*------- Shapes Modal --------*/
+
+    /* modal dialog */
   #shapesModal .modal-dialog {
     width: 100%;
     height: 100%;
@@ -652,12 +688,87 @@
     padding: 0;
   }
 
+  /* modal content */
   #shapesModal .modal-content {
     height: auto;
     min-height: 100%;
     border-radius: 0;
   }
 
+        /* images */
+  #shapesModal .shapesImage {
+    padding: 10%;
+    margin-bottom: 8%;
+    border-radius: 0px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f2f2f2;
+  }
+
+/* selecting objects outside modal enabled */
+  #tryshapes .modal {
+    bottom: initial!important;
+  }
+
+
+/*------- Shapes setting modal --------*/
+
+/* close button */
+  #shapesSettingModal .realdivShapes {
+    float: right;
+    background: #445d6c;
+    border: none;
+    color: white;
+  }
+
+  /* shapes colors */
+    #shapesSettingModal #colorShapes{
+      display:none;
+    }
+
+/* modal dialog */
+  #shapesSettingModal .modal-dialog {
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+  }
+
+/* modal header */
+  #shapesSettingModal .modal-header {
+    padding: 4px;
+    background: #445d6c;
+  }
+
+/* text*/
+  #shapesSettingModal #textsetting {
+    color: white;
+    font-weight: bold;
+  }
+
+/* pointer on cursor */
+  #shapesSettingModal .pointer {
+    cursor: pointer;
+  }
+
+/* modal body */
+  #shapesSettingModal .modal-body {
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+/* shapesSettingModal width */
+  #shapesSettingModal {
+    width: 100%;
+  }
+
+
+    /*------- Images Modal--------*/
+
+    /* modal dialog */
   #imagesModal .modal-dialog {
     width: 100%;
     height: 100%;
@@ -665,12 +776,52 @@
     padding: 0;
   }
 
+  /* modal content */
   #imagesModal .modal-content {
     height: auto;
     min-height: 100%;
     border-radius: 0;
   }
 
+/*------- Image setting modal --------*/
+
+      /* close button */
+  #imageSettingModal .realImageShapes {
+    float: right;
+    background: #445d6c;
+    border: none;
+    color: white;
+  }
+
+      /* modal dialog */
+  #imageSettingModal .modal-dialog {
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+  }
+
+  /* modal header */
+  #imageSettingModal .modal-header {
+    padding: 4px;
+    background: #445d6c;
+  }
+
+  /* text */
+  #imageSettingModal #textsetting {
+    color: white;
+    font-weight: bold;
+  }
+
+/* selecting objects outside modal enabled */
+  #tryimages .modal {
+    bottom: initial!important;
+  }
+
+
+  /*------- Buy now modal --------*/
+
+/* modal dialog */
   #buyNowModal .modal-dialog {
     width: 100%;
     height: 100%;
@@ -678,25 +829,35 @@
     padding: 0;
   }
 
+/* modal content */
   #buyNowModal .modal-content {
     height: auto;
     min-height: 100%;
     border-radius: 0;
   }
-
-  #editorContainer {
-    height: 480px;
-  }
 }
 
 @media only screen and (min-width: 768px) {
 
-  /*=========== customize ==============*/
+  /* ==================================== Customized.php ====================================*/
 
+
+  /*------- Common rule --------*/
+
+  /* logo image */
   .logo>img {
     height: 250%;
   }
 
+/* modal header */
+  .modal-header {
+    padding: 2%;
+    margin-bottom: 2%;
+  }
+
+/*------- Carousel --------*/
+
+/* carousel controls */
   #myCarousel a>i {
     position: relative;
     margin-top: 150%;
@@ -704,10 +865,16 @@
     color: blue;
   }
 
+/* carousel image */
   #myCarousel .carousel-image {
     margin-left: 25%;
   }
 
+/* ==================================== Footer.php ====================================*/
+
+/*------- Text modal --------*/
+
+/* textarea */
   #textModal textarea {
     height: 250px;
     width: 100%;
@@ -718,6 +885,7 @@
     font-weight: bold;
   }
 
+/* modal dialog */
   #textModal .modal-dialog {
     height: auto;
     width: 90%;
@@ -725,20 +893,20 @@
     padding: 0px;
   }
 
-  .modal-header {
-    padding: 2%;
-    margin-bottom: 2%;
-  }
+/*------- Text setting modal --------*/
 
+/* colors */
   #colorTextModal {
     margin-bottom: 2%;
     right: 0%;
   }
 
+/* fonts */
   #fontTextModal {
     right: 0%;
   }
 
+/* fonts ul */
   #fontModalList {
     max-height: 180px;
     margin-bottom: 0%;
@@ -746,6 +914,7 @@
     font-weight: bold;
   }
 
+/* droupup content */
   #textSettingModal .dropup-content {
     min-width: 100%;
     max-width: 100%;
@@ -753,6 +922,7 @@
     z-index: 99;
   }
 
+/* well class */
   #textSettingModal .well {
     background: white;
     padding: 4%;
@@ -760,19 +930,25 @@
     right: 0%;
   }
 
+  /* bend text */
+  #bendTextModal {
+    margin-bottom: 5%;
+    background:white;
+  }
+
+/* align text  */
+  #alignTextModal {
+    margin-bottom: 4%;
+  }
+
+/*------- Shapes setting modal --------*/
+
+/* modal body */
   #shapesSettingModal .modal-body {
     margin-right: 0px;
     margin-left: 0px;
     margin-top: 0px;
     padding-right: 0px;
     padding-left: 0px;
-  }
-
-  #bendTextModal {
-    margin-bottom: 5%;
-  }
-
-  #alignTextModal {
-    margin-bottom: 4%;
   }
 }

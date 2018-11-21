@@ -1,13 +1,13 @@
-
 <?php
 
  include "header.php";
  include "includes/canvasParts.php";
 
  ?>
+
 <div class="customized-container">
 
-<!-- Start Navbar -->
+<!-- Navbar -->
 
   <nav class="navbar navbar-inverse" id="navbarCss">
       <div class="">
@@ -22,9 +22,8 @@
       </div>
     </nav>
 
-    <!-- End Navbar -->
 
-<!-- Start Carousel -->
+<!-- Carousel -->
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -61,11 +60,10 @@
      </script>
 
 
- <!-- End Carousel -->
 
-<!-- <button type="button" name="button" id="downloadImage" class="btn btn-primary btn-block">Download Image</button> -->
+<!-- Firstlook  -->
 
-<div class="container-fluid text-center" id="firstlook" style="position:fixed;bottom:0px;width:100%;">
+<div class="container-fluid text-center" id="firstlook">
 <div class="row tabs">
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column-tabs" id="textModalFirstlook" data-toggle="modal" data-target="#textModal">
     <i class="fa fa-text-width fa-2x" aria-hidden="true"></i>
@@ -87,7 +85,6 @@
 </div>
 </div>
 
-<!-- End Column Tabs -->
 
 
 <?php include "footer.php" ?>
